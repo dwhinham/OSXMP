@@ -1,0 +1,6 @@
+language:       objective-c
+xcode_project:  OSXMP.xcodeproj
+xcode_scheme:   OSXMP
+before_install:
+  - brew update
+  - brew install libxmp yaml-cpp
