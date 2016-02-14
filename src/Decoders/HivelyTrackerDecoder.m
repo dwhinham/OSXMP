@@ -111,7 +111,7 @@
 						   {
 							   // Wait for semaphore
 							   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-							   //usleep(15000);
+                               if (!_play) return;
 						   }
 						   
 						   // Update UI if position/row changes

@@ -28,7 +28,7 @@
 	CTFontRef _fontRef;
 }
 
-@property (nonatomic, strong, readwrite) id<Decoder> decoder;
+@property (nonatomic, weak, readwrite) id<Decoder> decoder;
 @property (nonatomic, assign, readwrite) int channels;
 @property (nonatomic, assign, readwrite) int currentRow;
 @property (nonatomic, assign, readwrite) int currentPosition;

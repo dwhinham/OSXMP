@@ -148,33 +148,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="266" height="107"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <segmentedControl verticalHuggingPriority="750" id="Vp9-Ap-d77" userLabel="Playback Controls">
-                        <rect key="frame" x="6" y="4" width="130" height="27"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="automatic" trackingMode="momentary" id="oSi-xQ-Jrt">
-                            <font key="font" size="15" name="Webdings"/>
-                            <segments>
-                                <segment label="" toolTip="Previous" width="31"/>
-                                <segment label="" toolTip="Play/Pause" width="30" tag="1"/>
-                                <segment label="" toolTip="Stop" width="30"/>
-                                <segment label="" toolTip="Next" width="30"/>
-                            </segments>
-                        </segmentedCell>
-                        <connections>
-                            <action selector="transportControlsWereClicked:" target="494" id="VeZ-ie-nEa"/>
-                        </connections>
-                    </segmentedControl>
-                    <button toolTip="Open..." verticalHuggingPriority="750" id="A2E-gb-haA" userLabel="Open File">
-                        <rect key="frame" x="139" y="5" width="37" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="⏏" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZDW-Hf-HWG">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="openFile:" target="494" id="SDI-pc-uC2"/>
-                        </connections>
-                    </button>
                     <textField verticalHuggingPriority="750" id="j11-9d-KiD" customClass="StatusBoxView">
                         <rect key="frame" x="6" y="59" width="222" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -205,7 +178,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="HDe-CJ-LIV" userLabel="Row Indicator">
                         <rect key="frame" x="91" y="57" width="38" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0" id="PeY-cP-t4q">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="00" id="PeY-cP-t4q">
                             <font key="font" size="14" name="Futura-CondensedMedium"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -278,6 +251,41 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <segmentedControl verticalHuggingPriority="750" id="Vp9-Ap-d77" userLabel="Playback Controls">
+                        <rect key="frame" x="6" y="6" width="130" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="oSi-xQ-Jrt">
+                            <font key="font" metaFont="system"/>
+                            <segments>
+                                <segment toolTip="Previous" image="controller-jump-to-start" width="31">
+                                    <nil key="label"/>
+                                </segment>
+                                <segment toolTip="Play/Pause" image="controller-play" width="30" tag="1">
+                                    <nil key="label"/>
+                                </segment>
+                                <segment toolTip="Stop" image="controller-stop" width="30">
+                                    <nil key="label"/>
+                                </segment>
+                                <segment toolTip="Next" image="controller-next" width="30">
+                                    <nil key="label"/>
+                                </segment>
+                            </segments>
+                        </segmentedCell>
+                        <connections>
+                            <action selector="transportControlsWereClicked:" target="494" id="VeZ-ie-nEa"/>
+                        </connections>
+                    </segmentedControl>
+                    <button toolTip="Open..." verticalHuggingPriority="750" id="A2E-gb-haA" userLabel="Open File">
+                        <rect key="frame" x="136" y="1" width="44" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="⏏" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZDW-Hf-HWG">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="openFile:" target="494" id="SDI-pc-uC2"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <contentBorderThickness minY="0.0"/>
@@ -563,4 +571,10 @@
         </window>
         <customObject id="eyi-K2-uXm" customClass="PlaylistViewController"/>
     </objects>
+    <resources>
+        <image name="controller-jump-to-start" width="15" height="15"/>
+        <image name="controller-next" width="15" height="15"/>
+        <image name="controller-play" width="15" height="15"/>
+        <image name="controller-stop" width="15" height="15"/>
+    </resources>
 </document>

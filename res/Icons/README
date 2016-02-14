@@ -1,0 +1,6 @@
+From Daniel Bruce's Entypo pictogram set, available at: http://www.entypo.com
+
+To convert the icons to PDF format (suitable for Xcode assets), do:
+
+   $ pip3 install cairosvg
+   $ ./convert

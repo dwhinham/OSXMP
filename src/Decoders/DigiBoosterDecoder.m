@@ -32,12 +32,12 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 
 						   // If the position has changed, let the delegate know
 						   if (decoder->_currentPosition != uevent->ue_Order)
+                           {
+                               decoder->_currentPosition = uevent->ue_Order;
 							   [decoder->_delegate positionNumberDidChange:decoder withPosNumber:uevent->ue_Order];
+                           }
 					   });
 	}
-	
-	// Update position counter
-	decoder->_currentPosition = uevent->ue_Order;
 }
 
 - (id)init
@@ -131,6 +131,8 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 {
 	//_currentPosition = -1;
 	_play = YES;
+
+    __block dispatch_semaphore_t semaphore = _audioDriver.semaphore;
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
 				   {
@@ -140,8 +142,11 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 						   if (!DB3_Mix(_db3Engine, 16, buffer)) break;
 						   
 						   while (!TPCircularBufferProduceBytes(_audioDriver.outputBuffer, buffer, sizeof(buffer)))
-							   // FIXME: Semaphores?
-							   usleep(30000);
+                           {
+                               // Wait for semaphore
+                               dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                               if (!_play) return;
+                           }
 					   }
 				   });
 	[_audioDriver start];
@@ -150,9 +155,9 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 
 - (BOOL)pause
 {
-	_play = NO;
 	[_audioDriver stop];
 	[_audioDriver flush];
+    _play = NO;
 	return YES;
 }
 

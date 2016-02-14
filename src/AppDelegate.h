@@ -18,11 +18,17 @@
 
 #import "PatternScopeView.h"
 
+typedef NS_ENUM(NSUInteger, PlayerState) {
+	PLAYING,
+	PAUSED,
+	STOPPED
+};
+
 @interface AppDelegate : NSObject <NSApplicationDelegate, DecoderDelegate>
 {
-	IBOutlet NSWindow*	mainWindow;
-	IBOutlet NSWindow*	patternScopeWindow;
-	IBOutlet NSWindow*	playlistWindow;
+	IBOutlet NSWindow* mainWindow;
+	IBOutlet NSWindow* patternScopeWindow;
+	IBOutlet NSWindow* playlistWindow;
 	
 	IBOutlet PatternScopeView* patternScope;
 	

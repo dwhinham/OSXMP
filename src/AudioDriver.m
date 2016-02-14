@@ -192,6 +192,7 @@ float averageLevel (SInt16* audioData, int numBytes)
 
 - (void)flush
 {
+	NSLog(@"Audio buffer flushed");
 	TPCircularBufferClear(_outputBuffer);
 }
 

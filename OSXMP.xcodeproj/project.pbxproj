@@ -179,6 +179,7 @@
 				2D34B68D1C6F7F02009960E0 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		2D34B68D1C6F7F02009960E0 /* Products */ = {
 			isa = PBXGroup;

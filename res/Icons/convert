@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+for icon in *.svg; do
+    cairosvg $icon -o $(echo $icon | sed 's/.svg/.pdf/g')
+done

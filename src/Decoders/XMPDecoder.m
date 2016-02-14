@@ -128,7 +128,7 @@
 						   {
 							   // Wait for semaphore (aka. down)
 							   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-							   //usleep(_xmpFrameInfo.frame_time / 4);
+                               if (!_play) return;
 						   }
 						   
 						   // Update UI if position/row changes
@@ -152,17 +152,17 @@
 											  }
 										  });
 					   }
-					   //xmp_end_player(_xmpCtx);
 				   });
+
 	[_audioDriver start];
 	return YES;
 }
 
 - (BOOL)pause
 {
-	_play = NO;
 	[_audioDriver stop];
 	[_audioDriver flush];
+    _play = NO;
 	
 	return YES;
 }
@@ -179,14 +179,9 @@
 
 - (BOOL)stop
 {
-	_play = NO;
-	xmp_end_player(_xmpCtx);
-	
-	// Wait for buffer to empty
-	//while (_audioDriver->_outputBuffer->fillCount);
-	
-	[_audioDriver stop];
-	[_audioDriver flush];
+    [self pause];
+    xmp_end_player(_xmpCtx);
+
 	return YES;
 }
 
