@@ -1,0 +1,8 @@
+[submodule "lib/TPCircularBuffer"]
+	path = lib/TPCircularBuffer
+	url = git@github.com:michaeltyson/TPCircularBuffer
+	branch = master
+[submodule "lib/libdigibooster3"]
+	path = lib/libdigibooster3
+	url = git@github.com:grzegorz-kraszewski/libdigibooster3
+	branch = master

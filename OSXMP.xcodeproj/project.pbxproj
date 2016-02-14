@@ -1,0 +1,766 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D34B6961C6F7F02009960E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D34B6951C6F7F02009960E0 /* Assets.xcassets */; };
+		2D34B6991C6F7F02009960E0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D34B6971C6F7F02009960E0 /* MainMenu.xib */; };
+		2D34BF4C1C6F7FAB009960E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34B6A31C6F7FA7009960E0 /* AppDelegate.m */; };
+		2D34BF4D1C6F7FAB009960E0 /* AudioDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34B6A51C6F7FA7009960E0 /* AudioDriver.m */; };
+		2D34BF4F1C6F7FAB009960E0 /* DigiBoosterDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34B6AB1C6F7FA7009960E0 /* DigiBoosterDecoder.m */; };
+		2D34BF501C6F7FAB009960E0 /* HivelyTrackerDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34B6AD1C6F7FA7009960E0 /* HivelyTrackerDecoder.m */; };
+		2D34BF521C6F7FAB009960E0 /* XMPDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34B6B11C6F7FA7009960E0 /* XMPDecoder.m */; };
+		2D34C6B01C6F7FAC009960E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF3E1C6F7FAB009960E0 /* main.m */; };
+		2D34C6B11C6F7FAC009960E0 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF401C6F7FAB009960E0 /* MainWindow.m */; };
+		2D34C6B31C6F7FAC009960E0 /* OscilloscopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF441C6F7FAB009960E0 /* OscilloscopeView.m */; };
+		2D34C6B41C6F7FAC009960E0 /* PatternScopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF471C6F7FAB009960E0 /* PatternScopeView.m */; };
+		2D34C6B51C6F7FAC009960E0 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF491C6F7FAB009960E0 /* PlaylistViewController.m */; };
+		2D34C6B61C6F7FAC009960E0 /* StatusBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF4B1C6F7FAB009960E0 /* StatusBoxView.m */; };
+		2D34C70E1C6F97C4009960E0 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D34C7091C6F97C4009960E0 /* TPCircularBuffer.c */; };
+		2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2DFCD5231C6FF38F00EC7D30 /* libhivelytracker.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; };
+		2DFCD5341C6FFE6A00EC7D30 /* hvl_replay.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5301C6FFE6A00EC7D30 /* hvl_replay.c */; };
+		2DFCD5351C6FFE6A00EC7D30 /* hvl_replay.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFCD5311C6FFE6A00EC7D30 /* hvl_replay.h */; };
+		2DFCD5361C6FFE6A00EC7D30 /* hvl_tables.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5321C6FFE6A00EC7D30 /* hvl_tables.c */; };
+		2DFCD5371C6FFE6A00EC7D30 /* hvl_tables.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFCD5331C6FFE6A00EC7D30 /* hvl_tables.h */; };
+		2DFCD5601C70076E00EC7D30 /* dsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFCD5401C70064100EC7D30 /* dsp.h */; };
+		2DFCD5611C70076E00EC7D30 /* libdigibooster3.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFCD5411C70064100EC7D30 /* libdigibooster3.h */; };
+		2DFCD5621C70076E00EC7D30 /* lists.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFCD5421C70064100EC7D30 /* lists.h */; };
+		2DFCD5631C70076E00EC7D30 /* loader.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD54B1C70064100EC7D30 /* loader.c */; };
+		2DFCD5641C70076E00EC7D30 /* musicmodule.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFCD5431C70064100EC7D30 /* musicmodule.h */; };
+		2DFCD5651C70076E00EC7D30 /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD54C1C70064100EC7D30 /* player.c */; };
+		2DFCD5661C70076E00EC7D30 /* player.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFCD5441C70064100EC7D30 /* player.h */; };
+		2DFCD5671C7008BF00EC7D30 /* dsp_echo.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5451C70064100EC7D30 /* dsp_echo.c */; };
+		2DFCD5681C7008BF00EC7D30 /* dsp_fetchinstr.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5461C70064100EC7D30 /* dsp_fetchinstr.c */; };
+		2DFCD5691C7008BF00EC7D30 /* dsp_linresampler.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5471C70064100EC7D30 /* dsp_linresampler.c */; };
+		2DFCD56A1C7008BF00EC7D30 /* dsp_panoramizer.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5481C70064100EC7D30 /* dsp_panoramizer.c */; };
+		2DFCD56B1C7008BF00EC7D30 /* dsp_wavetable.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5491C70064100EC7D30 /* dsp_wavetable.c */; };
+		2DFCD56C1C7008BF00EC7D30 /* dsp_zeropadder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD54A1C70064100EC7D30 /* dsp_zeropadder.c */; };
+		2DFCD56F1C70097200EC7D30 /* libdigibooster3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */; };
+		2DFCD59A1C700F7900EC7D30 /* libdigibooster3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2DFCD59B1C700F8A00EC7D30 /* libxmp.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2DFCD5941C700EC200EC7D30 /* libxmp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2DFCD59E1C70112800EC7D30 /* libxmp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD5941C700EC200EC7D30 /* libxmp.dylib */; };
+		2DFCD5A61C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */; };
+		2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2DFCD5201C6FF2CA00EC7D30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D34B6841C6F7F02009960E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D34C6E41C6F8392009960E0;
+			remoteInfo = libhivelytracker;
+		};
+		2DFCD56D1C70095D00EC7D30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D34B6841C6F7F02009960E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DFCD53B1C7004F500EC7D30;
+			remoteInfo = libdigibooster3;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2D34C75E1C6FB7CE009960E0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2DFCD59A1C700F7900EC7D30 /* libdigibooster3.dylib in CopyFiles */,
+				2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in CopyFiles */,
+				2DFCD59B1C700F8A00EC7D30 /* libxmp.dylib in CopyFiles */,
+				2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2D34B68C1C6F7F02009960E0 /* OSXMP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSXMP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D34B6951C6F7F02009960E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = res/Assets.xcassets; sourceTree = "<group>"; };
+		2D34B6981C6F7F02009960E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2D34B69A1C6F7F02009960E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = res/Info.plist; sourceTree = "<group>"; };
+		2D34B6A21C6F7FA7009960E0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2D34B6A31C6F7FA7009960E0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2D34B6A41C6F7FA7009960E0 /* AudioDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioDriver.h; sourceTree = "<group>"; };
+		2D34B6A51C6F7FA7009960E0 /* AudioDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioDriver.m; sourceTree = "<group>"; };
+		2D34B6A71C6F7FA7009960E0 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
+		2D34B6A91C6F7FA7009960E0 /* DecoderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecoderDelegate.h; sourceTree = "<group>"; };
+		2D34B6AA1C6F7FA7009960E0 /* DigiBoosterDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigiBoosterDecoder.h; sourceTree = "<group>"; };
+		2D34B6AB1C6F7FA7009960E0 /* DigiBoosterDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigiBoosterDecoder.m; sourceTree = "<group>"; };
+		2D34B6AC1C6F7FA7009960E0 /* HivelyTrackerDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HivelyTrackerDecoder.h; sourceTree = "<group>"; };
+		2D34B6AD1C6F7FA7009960E0 /* HivelyTrackerDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HivelyTrackerDecoder.m; sourceTree = "<group>"; };
+		2D34B6AE1C6F7FA7009960E0 /* MilkyTrackerDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MilkyTrackerDecoder.h; sourceTree = "<group>"; };
+		2D34B6AF1C6F7FA7009960E0 /* MilkyTrackerDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MilkyTrackerDecoder.mm; sourceTree = "<group>"; };
+		2D34B6B01C6F7FA7009960E0 /* XMPDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPDecoder.h; sourceTree = "<group>"; };
+		2D34B6B11C6F7FA7009960E0 /* XMPDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPDecoder.m; sourceTree = "<group>"; };
+		2D34BF3E1C6F7FAB009960E0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2D34BF3F1C6F7FAB009960E0 /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		2D34BF401C6F7FAB009960E0 /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
+		2D34BF411C6F7FAB009960E0 /* OpenGLPatternScopeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLPatternScopeView.h; sourceTree = "<group>"; };
+		2D34BF421C6F7FAB009960E0 /* OpenGLPatternScopeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLPatternScopeView.m; sourceTree = "<group>"; };
+		2D34BF431C6F7FAB009960E0 /* OscilloscopeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscilloscopeView.h; sourceTree = "<group>"; };
+		2D34BF441C6F7FAB009960E0 /* OscilloscopeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OscilloscopeView.m; sourceTree = "<group>"; };
+		2D34BF451C6F7FAB009960E0 /* PatternData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternData.h; sourceTree = "<group>"; };
+		2D34BF461C6F7FAB009960E0 /* PatternScopeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternScopeView.h; sourceTree = "<group>"; };
+		2D34BF471C6F7FAB009960E0 /* PatternScopeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternScopeView.m; sourceTree = "<group>"; };
+		2D34BF481C6F7FAB009960E0 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
+		2D34BF491C6F7FAB009960E0 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
+		2D34BF4A1C6F7FAB009960E0 /* StatusBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBoxView.h; sourceTree = "<group>"; };
+		2D34BF4B1C6F7FAB009960E0 /* StatusBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBoxView.m; sourceTree = "<group>"; };
+		2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libhivelytracker.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D34C7091C6F97C4009960E0 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		2D34C70A1C6F97C4009960E0 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		2DFCD5301C6FFE6A00EC7D30 /* hvl_replay.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hvl_replay.c; path = lib/hivelytracker/hvl_replay.c; sourceTree = "<group>"; };
+		2DFCD5311C6FFE6A00EC7D30 /* hvl_replay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hvl_replay.h; path = lib/hivelytracker/hvl_replay.h; sourceTree = "<group>"; };
+		2DFCD5321C6FFE6A00EC7D30 /* hvl_tables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hvl_tables.c; path = lib/hivelytracker/hvl_tables.c; sourceTree = "<group>"; };
+		2DFCD5331C6FFE6A00EC7D30 /* hvl_tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hvl_tables.h; path = lib/hivelytracker/hvl_tables.h; sourceTree = "<group>"; };
+		2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdigibooster3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DFCD5401C70064100EC7D30 /* dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dsp.h; path = lib/libdigibooster3/dsp.h; sourceTree = "<group>"; };
+		2DFCD5411C70064100EC7D30 /* libdigibooster3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libdigibooster3.h; path = lib/libdigibooster3/libdigibooster3.h; sourceTree = "<group>"; };
+		2DFCD5421C70064100EC7D30 /* lists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lists.h; path = lib/libdigibooster3/lists.h; sourceTree = "<group>"; };
+		2DFCD5431C70064100EC7D30 /* musicmodule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = musicmodule.h; path = lib/libdigibooster3/musicmodule.h; sourceTree = "<group>"; };
+		2DFCD5441C70064100EC7D30 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = lib/libdigibooster3/player.h; sourceTree = "<group>"; };
+		2DFCD5451C70064100EC7D30 /* dsp_echo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dsp_echo.c; path = lib/libdigibooster3/dsp_echo.c; sourceTree = "<group>"; };
+		2DFCD5461C70064100EC7D30 /* dsp_fetchinstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dsp_fetchinstr.c; path = lib/libdigibooster3/dsp_fetchinstr.c; sourceTree = "<group>"; };
+		2DFCD5471C70064100EC7D30 /* dsp_linresampler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dsp_linresampler.c; path = lib/libdigibooster3/dsp_linresampler.c; sourceTree = "<group>"; };
+		2DFCD5481C70064100EC7D30 /* dsp_panoramizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dsp_panoramizer.c; path = lib/libdigibooster3/dsp_panoramizer.c; sourceTree = "<group>"; };
+		2DFCD5491C70064100EC7D30 /* dsp_wavetable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dsp_wavetable.c; path = lib/libdigibooster3/dsp_wavetable.c; sourceTree = "<group>"; };
+		2DFCD54A1C70064100EC7D30 /* dsp_zeropadder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dsp_zeropadder.c; path = lib/libdigibooster3/dsp_zeropadder.c; sourceTree = "<group>"; };
+		2DFCD54B1C70064100EC7D30 /* loader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = loader.c; path = lib/libdigibooster3/loader.c; sourceTree = "<group>"; };
+		2DFCD54C1C70064100EC7D30 /* player.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = player.c; path = lib/libdigibooster3/player.c; sourceTree = "<group>"; };
+		2DFCD5941C700EC200EC7D30 /* libxmp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxmp.dylib; path = /usr/local/Cellar/libxmp/4.3.10/lib/libxmp.dylib; sourceTree = "<absolute>"; };
+		2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libyaml-cpp.0.5.dylib"; path = "/Users/dale/GitHub/osxmp/../../../../usr/local/Cellar/yaml-cpp/0.5.3/lib/libyaml-cpp.0.5.dylib"; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D34B6891C6F7F02009960E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DFCD56F1C70097200EC7D30 /* libdigibooster3.dylib in Frameworks */,
+				2DFCD5231C6FF38F00EC7D30 /* libhivelytracker.dylib in Frameworks */,
+				2DFCD5A61C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib in Frameworks */,
+				2DFCD59E1C70112800EC7D30 /* libxmp.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D34C6E21C6F8392009960E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DFCD5391C7004F500EC7D30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D34B6831C6F7F02009960E0 = {
+			isa = PBXGroup;
+			children = (
+				2DFCD5931C700DED00EC7D30 /* Homebrew Libraries */,
+				2D34C6E91C6F83AB009960E0 /* Libraries */,
+				2D34B6A11C6F7FA7009960E0 /* Source */,
+				2D34B6A01C6F7F49009960E0 /* Resources */,
+				2D34B68D1C6F7F02009960E0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2D34B68D1C6F7F02009960E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D34B68C1C6F7F02009960E0 /* OSXMP.app */,
+				2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */,
+				2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2D34B6A01C6F7F49009960E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2D34B6951C6F7F02009960E0 /* Assets.xcassets */,
+				2D34B6971C6F7F02009960E0 /* MainMenu.xib */,
+				2D34B69A1C6F7F02009960E0 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2D34B6A11C6F7FA7009960E0 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2D34B6A21C6F7FA7009960E0 /* AppDelegate.h */,
+				2D34B6A41C6F7FA7009960E0 /* AudioDriver.h */,
+				2D34BF3F1C6F7FAB009960E0 /* MainWindow.h */,
+				2D34BF411C6F7FAB009960E0 /* OpenGLPatternScopeView.h */,
+				2D34BF431C6F7FAB009960E0 /* OscilloscopeView.h */,
+				2D34BF451C6F7FAB009960E0 /* PatternData.h */,
+				2D34BF461C6F7FAB009960E0 /* PatternScopeView.h */,
+				2D34BF481C6F7FAB009960E0 /* PlaylistViewController.h */,
+				2D34BF4A1C6F7FAB009960E0 /* StatusBoxView.h */,
+				2D34B6A31C6F7FA7009960E0 /* AppDelegate.m */,
+				2D34B6A51C6F7FA7009960E0 /* AudioDriver.m */,
+				2D34BF3E1C6F7FAB009960E0 /* main.m */,
+				2D34BF401C6F7FAB009960E0 /* MainWindow.m */,
+				2D34BF421C6F7FAB009960E0 /* OpenGLPatternScopeView.m */,
+				2D34BF441C6F7FAB009960E0 /* OscilloscopeView.m */,
+				2D34BF471C6F7FAB009960E0 /* PatternScopeView.m */,
+				2D34BF491C6F7FAB009960E0 /* PlaylistViewController.m */,
+				2D34BF4B1C6F7FAB009960E0 /* StatusBoxView.m */,
+				2D34B6A61C6F7FA7009960E0 /* Decoders */,
+			);
+			name = Source;
+			path = src;
+			sourceTree = "<group>";
+		};
+		2D34B6A61C6F7FA7009960E0 /* Decoders */ = {
+			isa = PBXGroup;
+			children = (
+				2D34B6A71C6F7FA7009960E0 /* Decoder.h */,
+				2D34B6A91C6F7FA7009960E0 /* DecoderDelegate.h */,
+				2D34B6AA1C6F7FA7009960E0 /* DigiBoosterDecoder.h */,
+				2D34B6AB1C6F7FA7009960E0 /* DigiBoosterDecoder.m */,
+				2D34B6AC1C6F7FA7009960E0 /* HivelyTrackerDecoder.h */,
+				2D34B6AD1C6F7FA7009960E0 /* HivelyTrackerDecoder.m */,
+				2D34B6AE1C6F7FA7009960E0 /* MilkyTrackerDecoder.h */,
+				2D34B6AF1C6F7FA7009960E0 /* MilkyTrackerDecoder.mm */,
+				2D34B6B01C6F7FA7009960E0 /* XMPDecoder.h */,
+				2D34B6B11C6F7FA7009960E0 /* XMPDecoder.m */,
+			);
+			path = Decoders;
+			sourceTree = "<group>";
+		};
+		2D34C6E91C6F83AB009960E0 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				2D34C6EA1C6F83C2009960E0 /* hivelytracker */,
+				2D34C73D1C6F994A009960E0 /* libdigibooster3 */,
+				2D34C7051C6F97C4009960E0 /* TPCircularBuffer */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		2D34C6EA1C6F83C2009960E0 /* hivelytracker */ = {
+			isa = PBXGroup;
+			children = (
+				2DFCD5301C6FFE6A00EC7D30 /* hvl_replay.c */,
+				2DFCD5311C6FFE6A00EC7D30 /* hvl_replay.h */,
+				2DFCD5321C6FFE6A00EC7D30 /* hvl_tables.c */,
+				2DFCD5331C6FFE6A00EC7D30 /* hvl_tables.h */,
+			);
+			name = hivelytracker;
+			sourceTree = "<group>";
+		};
+		2D34C7051C6F97C4009960E0 /* TPCircularBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				2D34C7091C6F97C4009960E0 /* TPCircularBuffer.c */,
+				2D34C70A1C6F97C4009960E0 /* TPCircularBuffer.h */,
+			);
+			name = TPCircularBuffer;
+			path = lib/TPCircularBuffer;
+			sourceTree = "<group>";
+		};
+		2D34C73D1C6F994A009960E0 /* libdigibooster3 */ = {
+			isa = PBXGroup;
+			children = (
+				2DFCD5451C70064100EC7D30 /* dsp_echo.c */,
+				2DFCD5461C70064100EC7D30 /* dsp_fetchinstr.c */,
+				2DFCD5471C70064100EC7D30 /* dsp_linresampler.c */,
+				2DFCD5481C70064100EC7D30 /* dsp_panoramizer.c */,
+				2DFCD5491C70064100EC7D30 /* dsp_wavetable.c */,
+				2DFCD54A1C70064100EC7D30 /* dsp_zeropadder.c */,
+				2DFCD5401C70064100EC7D30 /* dsp.h */,
+				2DFCD5411C70064100EC7D30 /* libdigibooster3.h */,
+				2DFCD5421C70064100EC7D30 /* lists.h */,
+				2DFCD54B1C70064100EC7D30 /* loader.c */,
+				2DFCD5431C70064100EC7D30 /* musicmodule.h */,
+				2DFCD54C1C70064100EC7D30 /* player.c */,
+				2DFCD5441C70064100EC7D30 /* player.h */,
+			);
+			name = libdigibooster3;
+			sourceTree = "<group>";
+		};
+		2DFCD5931C700DED00EC7D30 /* Homebrew Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				2DFCD5941C700EC200EC7D30 /* libxmp.dylib */,
+				2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */,
+			);
+			name = "Homebrew Libraries";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2D34C6E31C6F8392009960E0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DFCD5371C6FFE6A00EC7D30 /* hvl_tables.h in Headers */,
+				2DFCD5351C6FFE6A00EC7D30 /* hvl_replay.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DFCD53A1C7004F500EC7D30 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DFCD5621C70076E00EC7D30 /* lists.h in Headers */,
+				2DFCD5611C70076E00EC7D30 /* libdigibooster3.h in Headers */,
+				2DFCD5641C70076E00EC7D30 /* musicmodule.h in Headers */,
+				2DFCD5661C70076E00EC7D30 /* player.h in Headers */,
+				2DFCD5601C70076E00EC7D30 /* dsp.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2D34B68B1C6F7F02009960E0 /* OSXMP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D34B69D1C6F7F02009960E0 /* Build configuration list for PBXNativeTarget "OSXMP" */;
+			buildPhases = (
+				2D34B6881C6F7F02009960E0 /* Sources */,
+				2D34B6891C6F7F02009960E0 /* Frameworks */,
+				2D34B68A1C6F7F02009960E0 /* Resources */,
+				2D34C75E1C6FB7CE009960E0 /* CopyFiles */,
+				2DFCD5A81C7013D600EC7D30 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2DFCD56E1C70095D00EC7D30 /* PBXTargetDependency */,
+				2DFCD5211C6FF2CA00EC7D30 /* PBXTargetDependency */,
+			);
+			name = OSXMP;
+			productName = OSXMP;
+			productReference = 2D34B68C1C6F7F02009960E0 /* OSXMP.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D34C6E41C6F8392009960E0 /* libhivelytracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D34C6E61C6F8392009960E0 /* Build configuration list for PBXNativeTarget "libhivelytracker" */;
+			buildPhases = (
+				2D34C6E11C6F8392009960E0 /* Sources */,
+				2D34C6E21C6F8392009960E0 /* Frameworks */,
+				2D34C6E31C6F8392009960E0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libhivelytracker;
+			productName = libhivelytracker;
+			productReference = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		2DFCD53B1C7004F500EC7D30 /* libdigibooster3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DFCD53D1C7004F600EC7D30 /* Build configuration list for PBXNativeTarget "libdigibooster3" */;
+			buildPhases = (
+				2DFCD5381C7004F500EC7D30 /* Sources */,
+				2DFCD5391C7004F500EC7D30 /* Frameworks */,
+				2DFCD53A1C7004F500EC7D30 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libdigibooster3;
+			productName = digibooster3;
+			productReference = 2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2D34B6841C6F7F02009960E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Dale Whinham";
+				TargetAttributes = {
+					2D34B68B1C6F7F02009960E0 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					2D34C6E41C6F8392009960E0 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					2DFCD53B1C7004F500EC7D30 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 2D34B6871C6F7F02009960E0 /* Build configuration list for PBXProject "OSXMP" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				English,
+			);
+			mainGroup = 2D34B6831C6F7F02009960E0;
+			productRefGroup = 2D34B68D1C6F7F02009960E0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D34B68B1C6F7F02009960E0 /* OSXMP */,
+				2D34C6E41C6F8392009960E0 /* libhivelytracker */,
+				2DFCD53B1C7004F500EC7D30 /* libdigibooster3 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D34B68A1C6F7F02009960E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D34B6961C6F7F02009960E0 /* Assets.xcassets in Resources */,
+				2D34B6991C6F7F02009960E0 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DFCD5A81C7013D600EC7D30 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Fix the install path for the libraries we copied to the app bundle\ncd ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\nfor lib in *.dylib; do\n    oldid=$(otool -XD ${lib})\n    newid=@rpath/../Frameworks/${lib}\n    install_name_tool -id ${newid} ${lib}\n    install_name_tool -change ${oldid} ${newid} ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2D34B6881C6F7F02009960E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D34C6B61C6F7FAC009960E0 /* StatusBoxView.m in Sources */,
+				2D34C6B11C6F7FAC009960E0 /* MainWindow.m in Sources */,
+				2D34C6B51C6F7FAC009960E0 /* PlaylistViewController.m in Sources */,
+				2D34C6B41C6F7FAC009960E0 /* PatternScopeView.m in Sources */,
+				2D34C6B31C6F7FAC009960E0 /* OscilloscopeView.m in Sources */,
+				2D34BF521C6F7FAB009960E0 /* XMPDecoder.m in Sources */,
+				2D34C6B01C6F7FAC009960E0 /* main.m in Sources */,
+				2D34BF4F1C6F7FAB009960E0 /* DigiBoosterDecoder.m in Sources */,
+				2D34BF4D1C6F7FAB009960E0 /* AudioDriver.m in Sources */,
+				2D34BF4C1C6F7FAB009960E0 /* AppDelegate.m in Sources */,
+				2D34BF501C6F7FAB009960E0 /* HivelyTrackerDecoder.m in Sources */,
+				2D34C70E1C6F97C4009960E0 /* TPCircularBuffer.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D34C6E11C6F8392009960E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DFCD5341C6FFE6A00EC7D30 /* hvl_replay.c in Sources */,
+				2DFCD5361C6FFE6A00EC7D30 /* hvl_tables.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DFCD5381C7004F500EC7D30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DFCD56A1C7008BF00EC7D30 /* dsp_panoramizer.c in Sources */,
+				2DFCD5671C7008BF00EC7D30 /* dsp_echo.c in Sources */,
+				2DFCD5681C7008BF00EC7D30 /* dsp_fetchinstr.c in Sources */,
+				2DFCD56B1C7008BF00EC7D30 /* dsp_wavetable.c in Sources */,
+				2DFCD5691C7008BF00EC7D30 /* dsp_linresampler.c in Sources */,
+				2DFCD5631C70076E00EC7D30 /* loader.c in Sources */,
+				2DFCD5651C70076E00EC7D30 /* player.c in Sources */,
+				2DFCD56C1C7008BF00EC7D30 /* dsp_zeropadder.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2DFCD5211C6FF2CA00EC7D30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D34C6E41C6F8392009960E0 /* libhivelytracker */;
+			targetProxy = 2DFCD5201C6FF2CA00EC7D30 /* PBXContainerItemProxy */;
+		};
+		2DFCD56E1C70095D00EC7D30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2DFCD53B1C7004F500EC7D30 /* libdigibooster3 */;
+			targetProxy = 2DFCD56D1C70095D00EC7D30 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2D34B6971C6F7F02009960E0 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D34B6981C6F7F02009960E0 /* Base */,
+			);
+			name = MainMenu.xib;
+			path = res;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2D34B69B1C6F7F02009960E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/libxmp/4.3.10/include,
+					"/usr/local/Cellar/yaml-cpp/0.5.3/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/libxmp/4.3.10/lib,
+					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2D34B69C1C6F7F02009960E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/libxmp/4.3.10/include,
+					"/usr/local/Cellar/yaml-cpp/0.5.3/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/libxmp/4.3.10/lib,
+					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2D34B69E1C6F7F02009960E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/res/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/libxmp/4.3.10/lib,
+					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.daleyo.OSXMP;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2D34B69F1C6F7F02009960E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/res/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/libxmp/4.3.10/lib,
+					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.daleyo.OSXMP;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2D34C6E71C6F8392009960E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1.8;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = NO;
+				INSTALL_PATH = "@rpath../Frameworks/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/libxmp/4.3.10/lib,
+				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
+				MACH_O_TYPE = mh_dylib;
+				PRODUCT_NAME = hivelytracker;
+			};
+			name = Debug;
+		};
+		2D34C6E81C6F8392009960E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1.8;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = NO;
+				INSTALL_PATH = "@rpath../Frameworks/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/libxmp/4.3.10/lib,
+				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
+				MACH_O_TYPE = mh_dylib;
+				PRODUCT_NAME = hivelytracker;
+			};
+			name = Release;
+		};
+		2DFCD53E1C7004F600EC7D30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1.2;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu89;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					TARGET_LINUX,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INSTALL_PATH = "@rpath../Frameworks/";
+				PRODUCT_NAME = digibooster3;
+			};
+			name = Debug;
+		};
+		2DFCD53F1C7004F600EC7D30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1.2;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu89;
+				GCC_PREPROCESSOR_DEFINITIONS = TARGET_LINUX;
+				INSTALL_PATH = "@rpath../Frameworks/";
+				PRODUCT_NAME = digibooster3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D34B6871C6F7F02009960E0 /* Build configuration list for PBXProject "OSXMP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D34B69B1C6F7F02009960E0 /* Debug */,
+				2D34B69C1C6F7F02009960E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D34B69D1C6F7F02009960E0 /* Build configuration list for PBXNativeTarget "OSXMP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D34B69E1C6F7F02009960E0 /* Debug */,
+				2D34B69F1C6F7F02009960E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D34C6E61C6F8392009960E0 /* Build configuration list for PBXNativeTarget "libhivelytracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D34C6E71C6F8392009960E0 /* Debug */,
+				2D34C6E81C6F8392009960E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DFCD53D1C7004F600EC7D30 /* Build configuration list for PBXNativeTarget "libdigibooster3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DFCD53E1C7004F600EC7D30 /* Debug */,
+				2DFCD53F1C7004F600EC7D30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2D34B6841C6F7F02009960E0 /* Project object */;
+}

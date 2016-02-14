@@ -1,0 +1,12 @@
+This is a fork of the Windows replayer code from HivelyTracker,
+available at: https://github.com/pete-gordon/hivelytracker
+
+Modifications:
+
+    * Removed typedefs, replaced with native C99 standard
+      integer types and standard booleans.
+      This alleviates problems compiling under OS X alongside
+      Objective-C++ code.
+
+    * Replaced some occurences of uint32 with size_t for buffer
+      lengths. This silences some compiler warnings.
