@@ -14,9 +14,6 @@
 - (void)decoderLoadingWasSuccessful: (id)sender;
 - (void)decoderLoadingWasUnsuccessful: (id)sender;
 
-- (void)patternRowNumberDidChange: (id)sender;
-- (void)patternRowNumberDidChange: (id)sender withRowNumber: (int)rowNumber;
 - (void)patternRowNumberDidChange: (id)sender withRowNumber: (int)rowNumber andPatternLength: (int)patternLength;
-
 - (void)positionNumberDidChange: (id)sender withPosNumber: (int)posNumber;
 @end

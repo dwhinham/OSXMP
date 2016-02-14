@@ -91,8 +91,8 @@ float averageLevel (SInt16* audioData, int numBytes)
 	// Init semaphore
 	_semaphore = dispatch_semaphore_create(_bufferSize);
 	
-	// Component descrition for default output device
-	AudioComponentDescription componentDesc = {0};
+	// Component description for default output device
+	AudioComponentDescription componentDesc = {};
 	componentDesc.componentType = kAudioUnitType_Output;
 	componentDesc.componentSubType = kAudioUnitSubType_DefaultOutput;
 	componentDesc.componentManufacturer = kAudioUnitManufacturer_Apple;

@@ -20,7 +20,7 @@
 @property (nonatomic, assign, readonly) AudioUnit outputUnit;
 @property (nonatomic, assign, readwrite) int sampleRate;
 @property (nonatomic, assign, readwrite) int bufferSize;
-@property (nonatomic, assign, readonly) dispatch_semaphore_t semaphore;
+@property (nonatomic, strong, readonly) dispatch_semaphore_t semaphore;
 
 @property (nonatomic, assign, readonly) float leftLevel;
 @property (nonatomic, assign, readonly) float rightLevel;

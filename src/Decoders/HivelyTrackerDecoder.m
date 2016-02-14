@@ -102,7 +102,7 @@
 				   {
 					   while (_play)
 					   {
-						   char buffer[DEFAULT_SAMPLE_RATE * 2 * 2 / 50];
+						   int8_t buffer[DEFAULT_SAMPLE_RATE * 2 * 2 / 50];
 						   memset(&buffer, 0, sizeof(buffer));
 						   
 						   hvl_DecodeFrame(_hvlModule, &buffer[0], &buffer[2], 4);

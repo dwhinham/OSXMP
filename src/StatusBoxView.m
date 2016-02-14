@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib
 {
-    [[self cell] setBezelStyle: NSTextFieldRoundedBezel];
+    [[self cell] setBezelStyle: NSRoundedBezelStyle];
 }
 
 - (id)initWithFrame:(NSRect)frame
