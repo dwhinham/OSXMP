@@ -21,7 +21,7 @@
 		2D34C6B51C6F7FAC009960E0 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF491C6F7FAB009960E0 /* PlaylistViewController.m */; };
 		2D34C6B61C6F7FAC009960E0 /* StatusBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF4B1C6F7FAB009960E0 /* StatusBoxView.m */; };
 		2D34C70E1C6F97C4009960E0 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D34C7091C6F97C4009960E0 /* TPCircularBuffer.c */; };
-		2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; };
 		2DFCD5231C6FF38F00EC7D30 /* libhivelytracker.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; };
 		2DFCD5341C6FFE6A00EC7D30 /* hvl_replay.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5301C6FFE6A00EC7D30 /* hvl_replay.c */; };
 		2DFCD5351C6FFE6A00EC7D30 /* hvl_replay.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFCD5311C6FFE6A00EC7D30 /* hvl_replay.h */; };
@@ -41,11 +41,11 @@
 		2DFCD56B1C7008BF00EC7D30 /* dsp_wavetable.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5491C70064100EC7D30 /* dsp_wavetable.c */; };
 		2DFCD56C1C7008BF00EC7D30 /* dsp_zeropadder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD54A1C70064100EC7D30 /* dsp_zeropadder.c */; };
 		2DFCD56F1C70097200EC7D30 /* libdigibooster3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */; };
-		2DFCD59A1C700F7900EC7D30 /* libdigibooster3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		2DFCD59B1C700F8A00EC7D30 /* libxmp.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2DFCD5941C700EC200EC7D30 /* libxmp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2DFCD59A1C700F7900EC7D30 /* libdigibooster3.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */; };
+		2DFCD59B1C700F8A00EC7D30 /* libxmp.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DFCD5941C700EC200EC7D30 /* libxmp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2DFCD59E1C70112800EC7D30 /* libxmp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD5941C700EC200EC7D30 /* libxmp.dylib */; };
 		2DFCD5A61C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */; };
-		2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,17 +66,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2D34C75E1C6FB7CE009960E0 /* CopyFiles */ = {
+		2D34C75E1C6FB7CE009960E0 /* Copy Shared Libraries To Frameworks Folder */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2DFCD59A1C700F7900EC7D30 /* libdigibooster3.dylib in CopyFiles */,
-				2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in CopyFiles */,
-				2DFCD59B1C700F8A00EC7D30 /* libxmp.dylib in CopyFiles */,
-				2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.dylib in CopyFiles */,
+				2DFCD59A1C700F7900EC7D30 /* libdigibooster3.dylib in Copy Shared Libraries To Frameworks Folder */,
+				2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in Copy Shared Libraries To Frameworks Folder */,
+				2DFCD59B1C700F8A00EC7D30 /* libxmp.dylib in Copy Shared Libraries To Frameworks Folder */,
+				2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.dylib in Copy Shared Libraries To Frameworks Folder */,
 			);
+			name = "Copy Shared Libraries To Frameworks Folder";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -337,8 +338,8 @@
 				2D34B6881C6F7F02009960E0 /* Sources */,
 				2D34B6891C6F7F02009960E0 /* Frameworks */,
 				2D34B68A1C6F7F02009960E0 /* Resources */,
-				2D34C75E1C6FB7CE009960E0 /* CopyFiles */,
-				2DFCD5A81C7013D600EC7D30 /* ShellScript */,
+				2D34C75E1C6FB7CE009960E0 /* Copy Shared Libraries To Frameworks Folder */,
+				2DFCD5A81C7013D600EC7D30 /* Correct Library Install Names */,
 			);
 			buildRules = (
 			);
@@ -439,18 +440,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2DFCD5A81C7013D600EC7D30 /* ShellScript */ = {
+		2DFCD5A81C7013D600EC7D30 /* Correct Library Install Names */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Correct Library Install Names";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Fix the install path for the libraries we copied to the app bundle\ncd ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\nfor lib in *.dylib; do\n    oldid=$(otool -XD ${lib})\n    newid=@rpath/../Frameworks/${lib}\n    install_name_tool -id ${newid} ${lib}\n    install_name_tool -change ${oldid} ${newid} ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\ndone";
+			shellScript = "# Fix the install names for the libraries we copied to the app bundle\ncd ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\nfor lib in *.dylib; do\n    oldid=$(otool -XD ${lib})\n    newid=@rpath/../Frameworks/${lib}\n    install_name_tool -id ${newid} ${lib}\n    install_name_tool -change ${oldid} ${newid} ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\ndone";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -543,7 +545,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -570,10 +571,9 @@
 					/usr/local/Cellar/libxmp/4.3.10/lib,
 					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -594,7 +594,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -615,9 +614,8 @@
 					/usr/local/Cellar/libxmp/4.3.10/lib,
 					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -703,6 +701,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
 				INSTALL_PATH = "@rpath../Frameworks/";
 				PRODUCT_NAME = digibooster3;
 			};
@@ -716,6 +716,8 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu89;
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_LINUX;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
 				INSTALL_PATH = "@rpath../Frameworks/";
 				PRODUCT_NAME = digibooster3;
 			};
