@@ -1,4 +1,4 @@
-## OSXMP (working title)
+## OSXMP (working title) [![Build Status](https://travis-ci.org/dwhinham/OSXMP.svg?branch=master)](https://travis-ci.org/dwhinham/OSXMP)
 Scenemusic player for Macintosh.
 
 Currently in very early stages.
