@@ -22,11 +22,28 @@
 	AudioDriver* audioDriver;
 	id<Decoder> decoder;
 
-	NSTimer* levelMeterTimer;
+	NSUInteger previousButtonLastPressed;
 	
 	PlayerState playerState;
     Playlist* playlist;
     PlaylistViewController* playlistViewController;
+}
+
+- (NSUInteger)getTickCount
+{
+    // Static variable guaranteed to be zero-initialised
+    static mach_timebase_info_data_t timebaseInfo;
+
+    // Timebase info uninitialised?
+    if (timebaseInfo.denom == 0)
+        mach_timebase_info(&timebaseInfo);
+
+    // Get the system tick count in nanoseconds
+    uint64_t absTime = mach_absolute_time();
+    uint64_t absTimeNanos = absTime * timebaseInfo.numer / timebaseInfo.denom;
+
+    // Convert to milliseconds
+    return (NSUInteger) (absTimeNanos / 1e6);
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -88,44 +105,10 @@
 - (void)openFile:(NSURL*)url
 {
     // File path
-    currentPlaylistItem = [PlaylistItem playlistItemWithURL:url];
+    if (currentPlaylistItem)
+        currentPlaylistItem.isPlaying = NO;
 
-    if (!self->audioDriver)
-    {
-        self->audioDriver = [[AudioDriver alloc] init];
-        if (!self->audioDriver)
-        {
-            NSAlert* errorMessage = [[NSAlert alloc] init];
-            [errorMessage setMessageText:@"Couldn't open sound driver."];
-            [errorMessage setAlertStyle:NSCriticalAlertStyle];
-            [errorMessage beginSheetModalForWindow:self->mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
-            return;
-        }
-    }
-
-    if (self->decoder)
-    {
-        [self->decoder stop];
-        self->decoder = nil;
-    }
-
-    // Is it a DigiBooster module?
-    if ([url.pathExtension isEqualTo:@"dbm"])
-    {
-        self->decoder = [[DigiBoosterDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
-    }
-
-    // Is it a Hively/AHX module?
-    else if ([url.pathExtension isEqualTo:@"hvl"] || [url.pathExtension isEqualTo:@"ahx"])
-    {
-        self->decoder = [[HivelyTrackerDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
-    }
-
-    // Use XMP to load
-    else
-    {
-        self->decoder = [[XMPDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
-    }
+    [self openPlaylistItem: [PlaylistItem playlistItemWithURL:url]];
 }
 
 - (IBAction)openFileWithDialog:(id)sender
@@ -162,26 +145,33 @@
     switch ([sender selectedSegment])
     {
         case 0:
-            // Previous button hit
-
             // Alt + button: previous position
             if ([NSEvent modifierFlags] & NSAlternateKeyMask)
                 [decoder backwards];
 
-            else if ([playlist previous])
+            else if (previousButtonLastPressed && [self getTickCount] - previousButtonLastPressed < 2000 && [playlist previous])
             {
                 [self openPlaylistItem:[playlist currentPlaylistItem]];
                 [playlistViewController reloadData];
             }
+            else if (decoder)
+            {
+                [decoder seekPosition:0];
+            }
+
+            previousButtonLastPressed = [self getTickCount];
 
             break;
 
         case 1:
             // Play/Pause button hit
-            if (!decoder)
-                return;
-
-            if (playerState != PLAYING)
+            if (!decoder && playlist.count)
+            {
+                playerState = PLAYING;
+                [self openPlaylistItem:[playlist currentPlaylistItem]];
+                [playlistViewController reloadData];
+            }
+            else if (playerState != PLAYING)
             {
                 playerState = PLAYING;
                 [sender setImage:[NSImage imageNamed:BUTTON_IMAGE_PAUSE] forSegment:1];

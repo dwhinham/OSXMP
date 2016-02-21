@@ -209,11 +209,15 @@
 - (void)removePlaylistItemAtIndex:(NSUInteger)index
 {
     [_playlistItems removeObjectAtIndex:index];
+    if (_currentPlaylistIndex >= _playlistItems.count)
+        _currentPlaylistIndex = _playlistItems.count - 1;
 }
 
 - (void)removePlaylistItemsAtIndexes:(NSIndexSet *)indexes
 {
     [_playlistItems removeObjectsAtIndexes:indexes];
+    if (_currentPlaylistIndex >= _playlistItems.count)
+        _currentPlaylistIndex = _playlistItems.count - 1;
 }
 
 - (void)replacePlaylistItemAtIndex:(NSUInteger)index withPlaylistItem:(PlaylistItem*)playlistItem;

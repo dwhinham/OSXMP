@@ -43,6 +43,8 @@ typedef NS_ENUM(NSUInteger, PlayerState)
 	IBOutlet NSSlider* volumeSlider;
 }
 
++ (NSUInteger)getTickCount;
+
 - (IBAction)openFileWithDialog:(id)sender;
 - (IBAction)changeVolume:(id)sender;
 - (void)openPlaylistItem:(PlaylistItem*)playlistItem;
