@@ -41,6 +41,9 @@
 
 - (void)openPlaylistItem:(PlaylistItem*)playlistItem
 {
+    if (currentPlaylistItem)
+        currentPlaylistItem.isPlaying = NO;
+
     currentPlaylistItem = playlistItem;
     NSURL* url = playlistItem.url;
 
@@ -164,9 +167,9 @@
             // Alt + button: previous position
             if ([NSEvent modifierFlags] & NSAlternateKeyMask)
                 [decoder backwards];
+
             else if ([playlist previous])
             {
-                currentPlaylistItem.isPlaying = NO;
                 [self openPlaylistItem:[playlist currentPlaylistItem]];
                 [playlistViewController reloadData];
             }
@@ -175,6 +178,9 @@
 
         case 1:
             // Play/Pause button hit
+            if (!decoder)
+                return;
+
             if (playerState != PLAYING)
             {
                 playerState = PLAYING;
@@ -234,7 +240,6 @@
                 [decoder forwards];
             else if ([playlist next])
             {
-                currentPlaylistItem.isPlaying = NO;
                 [self openPlaylistItem:[playlist currentPlaylistItem]];
                 [playlistViewController reloadData];
             }

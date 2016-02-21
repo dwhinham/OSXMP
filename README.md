@@ -15,12 +15,12 @@ OSXMP depends on the following libraries:
   * libxmp
   * TPCircularBuffer (included as a submodule)
   * yaml-cpp
-  
+
 After cloning this repo, pull the submodules like so:
 
     git submodule init
     git submodule update
- 
+
 For the remaining libraries, the easiest way to get them is via [Homebrew](http://brew.sh):
 
     brew install libxmp yaml-cpp

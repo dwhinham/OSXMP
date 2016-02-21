@@ -11,7 +11,7 @@
 @implementation Playlist
 {
     NSMutableArray* _playlistItems;
-    NSUInteger _currentPlaylistItem;
+    NSUInteger _currentPlaylistIndex;
 }
 
 @synthesize name = _name;
@@ -23,7 +23,7 @@
     self = [super init];
     if (self)
     {
-        _currentPlaylistItem = 0;
+        _currentPlaylistIndex = 0;
         _playlistItems = [[NSMutableArray alloc] init];
     }
     return self;
@@ -40,25 +40,33 @@
 
 - (PlaylistItem*)currentPlaylistItem
 {
-    return [_playlistItems objectAtIndex:_currentPlaylistItem];
+    return [_playlistItems objectAtIndex:_currentPlaylistIndex];
+}
+
+- (BOOL)goToIndex:(NSUInteger)index
+{
+    if (index > _playlistItems.count)
+        return NO;
+
+    _currentPlaylistIndex = index;
+    return YES;
 }
 
 - (BOOL)next
 {
-    if (_currentPlaylistItem + 1 < _playlistItems.count)
-    {
-        _currentPlaylistItem++;
-        return YES;
-    }
-    return NO;
+    if (_currentPlaylistIndex + 1 >= _playlistItems.count)
+        return NO;
+
+    _currentPlaylistIndex++;
+    return YES;
 }
 
 - (BOOL)previous
 {
-    if (_currentPlaylistItem == 0)
+    if (_currentPlaylistIndex == 0)
         return NO;
 
-    _currentPlaylistItem--;
+    _currentPlaylistIndex--;
     return YES;
 }
 

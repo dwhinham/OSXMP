@@ -7,6 +7,7 @@
 //
 
 #import "PlaylistViewController.h"
+#import "AppDelegate.h"
 
 @implementation PlaylistViewController
 
@@ -16,10 +17,14 @@
 {
     [super windowDidLoad];
 
+    // Register double-click action
+    [_playlistView setTarget:self];
+    [_playlistView setDoubleAction:@selector(rowWasDoubleClicked:)];
+
     // Enable drag and drop for the NSTableView
     [_playlistView registerForDraggedTypes: [NSArray arrayWithObject: NSFilenamesPboardType]];
 
-    // Refresh the view with
+    // Refresh the view with contents of playlist
     [_playlistView reloadData];
 }
 
@@ -43,6 +48,15 @@
     }
 
     return nil;
+}
+
+- (void)rowWasDoubleClicked:(id)sender
+{
+    NSUInteger index = (NSUInteger)[sender clickedRow];
+    [_playlist goToIndex:index];
+    AppDelegate* delegate = (AppDelegate*) [NSApplication sharedApplication].delegate;
+    [delegate openPlaylistItem:[_playlist currentPlaylistItem]];
+    [self reloadData];
 }
 
 - (void)reloadData

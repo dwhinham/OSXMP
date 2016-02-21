@@ -405,7 +405,7 @@
                         </connections>
                     </button>
                     <button id="BQ9-zz-nqg">
-                        <rect key="frame" x="285" y="1" width="101" height="20"/>
+                        <rect key="frame" x="285" y="1" width="102" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="check" title="Lowercase Hex" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="gNb-jZ-5NK">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

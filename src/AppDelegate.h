@@ -38,17 +38,14 @@ typedef NS_ENUM(NSUInteger, PlayerState)
 	IBOutlet NSTextField* positionCounter;
 	IBOutlet NSTextField* patternCounter;
 	IBOutlet NSTextField* formatIndicator;
+
 	IBOutlet NSSlider* seekSlider;
 	IBOutlet NSSlider* volumeSlider;
-	
-	IBOutlet NSPanel* xmpControls;
 }
 
 - (IBAction)openFileWithDialog:(id)sender;
 - (IBAction)changeVolume:(id)sender;
-
-- (IBAction)xmpSetSeparation:(id)sender;
-- (IBAction)xmpSetLerp:(id)sender;
+- (void)openPlaylistItem:(PlaylistItem*)playlistItem;
 
 - (void)decoderLoadingWasSuccessful:(id)sender;
 - (void)decoderLoadingWasUnsuccessful:(id)sender;
@@ -56,5 +53,4 @@ typedef NS_ENUM(NSUInteger, PlayerState)
 - (void)positionNumberDidChange:(id)sender withPosNumber:(int)posNumber;
 
 - (IBAction)seekSliderDidChangeValue:(NSSlider *)sender;
-- (IBAction)blankZeroCheckBoxWasPressed:(NSButton *)sender;
 @end

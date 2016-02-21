@@ -26,6 +26,7 @@
 - (PlaylistItem*)playlistItemAtIndex:(NSUInteger)index;
 
 - (PlaylistItem*)currentPlaylistItem;
+- (BOOL)goToIndex:(NSUInteger)index;
 - (BOOL)next;
 - (BOOL)previous;
 
