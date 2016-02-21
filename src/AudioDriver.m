@@ -34,13 +34,13 @@ OSStatus outputCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlag
 	TPCircularBuffer* outputBuffer = audioDriver->_outputBuffer;
 	
 	// Number of bytes audio device expects
-	int bytesToCopy = ioData->mBuffers[0].mDataByteSize;
+	UInt32 bytesToCopy = ioData->mBuffers[0].mDataByteSize;
 	
 	// Pointer to destination buffer
     SInt16 *destBuffer = (SInt16*)ioData->mBuffers[0].mData;
 	
 	// Get pointer to start of circular buffer and number of bytes available in circular buffer
-    int32_t availableBytes;
+    UInt32 availableBytes;
     SInt16 *sourceBuffer = TPCircularBufferTail(outputBuffer, &availableBytes);
 	
 	// Copy the audio data
@@ -72,7 +72,7 @@ float averageLevel (SInt16* audioData, int numBytes)
 	int average = total / numBytes;
 	
 	float logAvg = log10f((float)average);
-	logAvg = logAvg / log10(32768);
+	logAvg = logAvg / log10f(32768);
 	
 	return logAvg;
 }
@@ -92,10 +92,12 @@ float averageLevel (SInt16* audioData, int numBytes)
 	_semaphore = dispatch_semaphore_create(_bufferSize);
 	
 	// Component description for default output device
-	AudioComponentDescription componentDesc = {};
+    AudioComponentDescription componentDesc;
 	componentDesc.componentType = kAudioUnitType_Output;
 	componentDesc.componentSubType = kAudioUnitSubType_DefaultOutput;
 	componentDesc.componentManufacturer = kAudioUnitManufacturer_Apple;
+    componentDesc.componentFlags = 0;
+    componentDesc.componentFlagsMask = 0;
 	
 	AudioComponent component = AudioComponentFindNext(NULL, &componentDesc);
 	if (component == NULL)
@@ -108,15 +110,16 @@ float averageLevel (SInt16* audioData, int numBytes)
 		return nil;
 	
 	// Set our input format description
-	AudioStreamBasicDescription streamFormat = {};
+    AudioStreamBasicDescription streamFormat;
 	streamFormat.mSampleRate = _sampleRate;
 	streamFormat.mFormatID = kAudioFormatLinearPCM;
 	streamFormat.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
+    streamFormat.mBytesPerPacket = 4;
+    streamFormat.mFramesPerPacket = 1;
+    streamFormat.mBytesPerFrame = 4;
 	streamFormat.mChannelsPerFrame = 2;
-	streamFormat.mFramesPerPacket = 1;
 	streamFormat.mBitsPerChannel = 16;
-	streamFormat.mBytesPerFrame = 4;
-	streamFormat.mBytesPerPacket = 4;
+    streamFormat.mReserved = 0;
 	
 	if ([AudioDriver checkError:	AudioUnitSetProperty(_outputUnit,
 									kAudioUnitProperty_StreamFormat,

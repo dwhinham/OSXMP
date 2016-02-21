@@ -114,40 +114,40 @@
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
 				   {
-					   while (_play)
+					   while (self->_play)
 					   {
 						   // Render a frame of audio
-						   xmp_play_frame(_xmpCtx);
-						   xmp_get_frame_info(_xmpCtx, &_xmpFrameInfo);
+						   xmp_play_frame(self->_xmpCtx);
+						   xmp_get_frame_info(self->_xmpCtx, &self->_xmpFrameInfo);
 						   
 						   //if (_xmpFrameInfo.loop_count > 0)
 						   //	break;
 						   
 						   // Returns false if buffer is full
-						   while (!TPCircularBufferProduceBytes(_audioDriver.outputBuffer, _xmpFrameInfo.buffer, _xmpFrameInfo.buffer_size))
+						   while (!TPCircularBufferProduceBytes(self->_audioDriver.outputBuffer, self->_xmpFrameInfo.buffer, self->_xmpFrameInfo.buffer_size))
 						   {
 							   // Wait for semaphore (aka. down)
 							   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-                               if (!_play) return;
+                               if (!self->_play) return;
 						   }
 						   
 						   // Update UI if position/row changes
 						   dispatch_async(dispatch_get_main_queue(), ^(void)
 										  {
-											  if (currentPosition != _xmpFrameInfo.pos)
+											  if (currentPosition != self->_xmpFrameInfo.pos)
 											  {
-												  currentPosition = _xmpFrameInfo.pos;
-												  if (_delegate)
+												  currentPosition = self->_xmpFrameInfo.pos;
+												  if (self->_delegate)
 												  {
-													  [_delegate positionNumberDidChange:self withPosNumber:currentPosition];
+													  [self->_delegate positionNumberDidChange:self withPosNumber:currentPosition];
 												  }
 											  }
-											  if (currentRow != _xmpFrameInfo.row)
+											  if (currentRow != self->_xmpFrameInfo.row)
 											  {
-												  currentRow = _xmpFrameInfo.row;
-												  if (_delegate)
+												  currentRow = self->_xmpFrameInfo.row;
+												  if (self->_delegate)
 												  {
-													  [_delegate patternRowNumberDidChange:self withRowNumber:currentRow andPatternLength:_xmpFrameInfo.num_rows];
+													  [self->_delegate patternRowNumberDidChange:self withRowNumber:currentRow andPatternLength:self->_xmpFrameInfo.num_rows];
 												  }
 											  }
 										  });
@@ -236,7 +236,7 @@
 	int trackIndex = _xmpModuleInfo->mod->xxp[patternIndex]->index[track];
 	struct xmp_event* event = &_xmpModuleInfo->mod->xxt[trackIndex]->event[row];
 	
-	PatternEvent e = {0};
+	PatternEvent e;
 	
 	// Blank notes
 	if (event->note == XMP_KEY_OFF)

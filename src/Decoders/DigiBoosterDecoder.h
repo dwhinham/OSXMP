@@ -15,9 +15,9 @@
 	struct DB3Module* _db3Module;
 	void* _db3Engine;
 	
-	int _currentPosition;
+	UInt32 _currentPosition;
 }
 
-- (BOOL) validatePosition:(int)position;
+- (BOOL) validatePosition:(UInt32)position;
 
 @end

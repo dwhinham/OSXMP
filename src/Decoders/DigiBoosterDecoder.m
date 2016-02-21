@@ -136,16 +136,16 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
 				   {
-					   while (_play)
+					   while (self->_play)
 					   {
 						   int16_t buffer[32];
-						   if (!DB3_Mix(_db3Engine, 16, buffer)) break;
+						   if (!DB3_Mix(self->_db3Engine, 16, buffer)) break;
 						   
-						   while (!TPCircularBufferProduceBytes(_audioDriver.outputBuffer, buffer, sizeof(buffer)))
+						   while (!TPCircularBufferProduceBytes(self->_audioDriver.outputBuffer, buffer, sizeof(buffer)))
                            {
                                // Wait for semaphore
                                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-                               if (!_play) return;
+                               if (!self->_play) return;
                            }
 					   }
 				   });
@@ -230,12 +230,18 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 	int patternIndex = _db3Module->Songs[0]->PlayList[position];
 	struct DB3ModEntry* event = &_db3Module->Patterns[patternIndex]->Pattern[row*_db3Module->NumTracks + track];
 	
-	PatternEvent e = {0};
+	PatternEvent e;
 	
 	if (!event->Octave)
+    {
 		e.note = PATTERNDATA_NOTE_SKIP;
+        e.octave = 0;
+    }
 	else if (event->Note == 0xf)
+    {
 		e.note = PATTERNDATA_NOTE_OFF;
+        e.octave = 0;
+    }
 	else
 	{
 		e.note = event->Note;
@@ -287,13 +293,9 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 	return NO;
 }
 
-- (BOOL)validatePosition: (int)position
+- (BOOL)validatePosition: (UInt32)position
 {
-	if (position < 0 || position >= _db3Module->Songs[0]->NumOrders)
-	{
-		return NO;
-	}
-	return YES;
+    return position < _db3Module->Songs[0]->NumOrders;
 }
 
 @end

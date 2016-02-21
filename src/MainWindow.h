@@ -9,5 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface MainWindow : NSWindow
-
+{
+    IBOutlet NSSegmentedCell* transportControls;
+}
 @end

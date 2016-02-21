@@ -100,37 +100,37 @@
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
 				   {
-					   while (_play)
+					   while (self->_play)
 					   {
 						   int8_t buffer[DEFAULT_SAMPLE_RATE * 2 * 2 / 50];
 						   memset(&buffer, 0, sizeof(buffer));
 						   
-						   hvl_DecodeFrame(_hvlModule, &buffer[0], &buffer[2], 4);
+						   hvl_DecodeFrame(self->_hvlModule, &buffer[0], &buffer[2], 4);
 						   
-						   while (!TPCircularBufferProduceBytes(_audioDriver.outputBuffer, buffer, sizeof(buffer)))
+						   while (!TPCircularBufferProduceBytes(self->_audioDriver.outputBuffer, buffer, sizeof(buffer)))
 						   {
 							   // Wait for semaphore
 							   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-                               if (!_play) return;
+                               if (!self->_play) return;
 						   }
 						   
 						   // Update UI if position/row changes
 						   dispatch_async(dispatch_get_main_queue(), ^(void)
 										  {
-											  if (_delegate && _currentPosition != _hvlModule->ht_PosNr)
+											  if (self->_delegate && self->_currentPosition != self->_hvlModule->ht_PosNr)
 											  {
-												  [_delegate positionNumberDidChange:self
-																	   withPosNumber:_hvlModule->ht_PosNr];
+												  [self->_delegate positionNumberDidChange:self
+																	   withPosNumber:self->_hvlModule->ht_PosNr];
 											  }
-											  _currentPosition = _hvlModule->ht_PosNr;
+											  self->_currentPosition = self->_hvlModule->ht_PosNr;
 											  
-											  if (_delegate && _currentRow != _hvlModule->ht_NoteNr)
+											  if (self->_delegate && self->_currentRow != self->_hvlModule->ht_NoteNr)
 											  {
-												  [_delegate patternRowNumberDidChange:self
-																		 withRowNumber:_hvlModule->ht_NoteNr
-																	  andPatternLength:_hvlModule->ht_TrackLength];
+												  [self->_delegate patternRowNumberDidChange:self
+																		 withRowNumber:self->_hvlModule->ht_NoteNr
+																	  andPatternLength:self->_hvlModule->ht_TrackLength];
 											  }
-											  _currentRow = _hvlModule->ht_NoteNr;
+											  self->_currentRow = self->_hvlModule->ht_NoteNr;
 										  });
 					   }
 				   });
@@ -226,9 +226,12 @@
 	struct hvl_step *htStep = &_hvlModule->ht_Tracks[htTrack][row];
 	
 	// Blank notes
-	PatternEvent e = {0};
+	PatternEvent e;
 	if (!htStep->stp_Note)
+    {
 		e.note = PATTERNDATA_NOTE_SKIP;
+        e.octave = 0;
+    }
 	else
 	{
 		// Split notes and octaves

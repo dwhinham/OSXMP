@@ -21,6 +21,9 @@
 		2D34C6B51C6F7FAC009960E0 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF491C6F7FAB009960E0 /* PlaylistViewController.m */; };
 		2D34C6B61C6F7FAC009960E0 /* StatusBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF4B1C6F7FAB009960E0 /* StatusBoxView.m */; };
 		2D34C70E1C6F97C4009960E0 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D34C7091C6F97C4009960E0 /* TPCircularBuffer.c */; };
+		2D6ECBDC1C7149E300CC2415 /* Playlist.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6ECBDB1C7149E300CC2415 /* Playlist.xib */; };
+		2DA213A41C78E178002866CD /* PlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA213A31C78E178002866CD /* PlaylistItem.m */; };
+		2DA213A81C78E809002866CD /* Playlist.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DA213A71C78E809002866CD /* Playlist.mm */; };
 		2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; };
 		2DFCD5231C6FF38F00EC7D30 /* libhivelytracker.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; };
 		2DFCD5341C6FFE6A00EC7D30 /* hvl_replay.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DFCD5301C6FFE6A00EC7D30 /* hvl_replay.c */; };
@@ -112,12 +115,17 @@
 		2D34BF461C6F7FAB009960E0 /* PatternScopeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternScopeView.h; sourceTree = "<group>"; };
 		2D34BF471C6F7FAB009960E0 /* PatternScopeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternScopeView.m; sourceTree = "<group>"; };
 		2D34BF481C6F7FAB009960E0 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
-		2D34BF491C6F7FAB009960E0 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
+		2D34BF491C6F7FAB009960E0 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; usesTabs = 0; };
 		2D34BF4A1C6F7FAB009960E0 /* StatusBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBoxView.h; sourceTree = "<group>"; };
 		2D34BF4B1C6F7FAB009960E0 /* StatusBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBoxView.m; sourceTree = "<group>"; };
 		2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libhivelytracker.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D34C7091C6F97C4009960E0 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
 		2D34C70A1C6F97C4009960E0 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		2D6ECBDB1C7149E300CC2415 /* Playlist.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Playlist.xib; path = res/Playlist.xib; sourceTree = "<group>"; };
+		2DA213A31C78E178002866CD /* PlaylistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistItem.m; sourceTree = "<group>"; };
+		2DA213A51C78E197002866CD /* PlaylistItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistItem.h; sourceTree = "<group>"; };
+		2DA213A61C78E809002866CD /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
+		2DA213A71C78E809002866CD /* Playlist.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Playlist.mm; sourceTree = "<group>"; };
 		2DFCD5301C6FFE6A00EC7D30 /* hvl_replay.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hvl_replay.c; path = lib/hivelytracker/hvl_replay.c; sourceTree = "<group>"; };
 		2DFCD5311C6FFE6A00EC7D30 /* hvl_replay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hvl_replay.h; path = lib/hivelytracker/hvl_replay.h; sourceTree = "<group>"; };
 		2DFCD5321C6FFE6A00EC7D30 /* hvl_tables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hvl_tables.c; path = lib/hivelytracker/hvl_tables.c; sourceTree = "<group>"; };
@@ -195,8 +203,9 @@
 			isa = PBXGroup;
 			children = (
 				2D34B6951C6F7F02009960E0 /* Assets.xcassets */,
-				2D34B6971C6F7F02009960E0 /* MainMenu.xib */,
 				2D34B69A1C6F7F02009960E0 /* Info.plist */,
+				2D34B6971C6F7F02009960E0 /* MainMenu.xib */,
+				2D6ECBDB1C7149E300CC2415 /* Playlist.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -205,24 +214,28 @@
 			isa = PBXGroup;
 			children = (
 				2D34B6A21C6F7FA7009960E0 /* AppDelegate.h */,
+				2D34B6A31C6F7FA7009960E0 /* AppDelegate.m */,
 				2D34B6A41C6F7FA7009960E0 /* AudioDriver.h */,
+				2D34B6A51C6F7FA7009960E0 /* AudioDriver.m */,
+				2D34B6A61C6F7FA7009960E0 /* Decoders */,
+				2D34BF3E1C6F7FAB009960E0 /* main.m */,
 				2D34BF3F1C6F7FAB009960E0 /* MainWindow.h */,
+				2D34BF401C6F7FAB009960E0 /* MainWindow.m */,
 				2D34BF411C6F7FAB009960E0 /* OpenGLPatternScopeView.h */,
+				2D34BF421C6F7FAB009960E0 /* OpenGLPatternScopeView.m */,
 				2D34BF431C6F7FAB009960E0 /* OscilloscopeView.h */,
+				2D34BF441C6F7FAB009960E0 /* OscilloscopeView.m */,
 				2D34BF451C6F7FAB009960E0 /* PatternData.h */,
 				2D34BF461C6F7FAB009960E0 /* PatternScopeView.h */,
-				2D34BF481C6F7FAB009960E0 /* PlaylistViewController.h */,
-				2D34BF4A1C6F7FAB009960E0 /* StatusBoxView.h */,
-				2D34B6A31C6F7FA7009960E0 /* AppDelegate.m */,
-				2D34B6A51C6F7FA7009960E0 /* AudioDriver.m */,
-				2D34BF3E1C6F7FAB009960E0 /* main.m */,
-				2D34BF401C6F7FAB009960E0 /* MainWindow.m */,
-				2D34BF421C6F7FAB009960E0 /* OpenGLPatternScopeView.m */,
-				2D34BF441C6F7FAB009960E0 /* OscilloscopeView.m */,
 				2D34BF471C6F7FAB009960E0 /* PatternScopeView.m */,
+				2D34BF481C6F7FAB009960E0 /* PlaylistViewController.h */,
 				2D34BF491C6F7FAB009960E0 /* PlaylistViewController.m */,
+				2DA213A61C78E809002866CD /* Playlist.h */,
+				2DA213A71C78E809002866CD /* Playlist.mm */,
+				2DA213A31C78E178002866CD /* PlaylistItem.m */,
+				2DA213A51C78E197002866CD /* PlaylistItem.h */,
+				2D34BF4A1C6F7FAB009960E0 /* StatusBoxView.h */,
 				2D34BF4B1C6F7FAB009960E0 /* StatusBoxView.m */,
-				2D34B6A61C6F7FA7009960E0 /* Decoders */,
 			);
 			name = Source;
 			path = src;
@@ -434,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D34B6961C6F7F02009960E0 /* Assets.xcassets in Resources */,
+				2D6ECBDC1C7149E300CC2415 /* Playlist.xib in Resources */,
 				2D34B6991C6F7F02009960E0 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +468,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Fix the install names for the libraries we copied to the app bundle\ncd ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\nfor lib in *.dylib; do\n    oldid=$(otool -XD ${lib})\n    newid=@rpath/../Frameworks/${lib}\n    install_name_tool -id ${newid} ${lib}\n    install_name_tool -change ${oldid} ${newid} ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\ndone";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -468,8 +483,10 @@
 				2D34C6B41C6F7FAC009960E0 /* PatternScopeView.m in Sources */,
 				2D34C6B31C6F7FAC009960E0 /* OscilloscopeView.m in Sources */,
 				2D34BF521C6F7FAB009960E0 /* XMPDecoder.m in Sources */,
+				2DA213A41C78E178002866CD /* PlaylistItem.m in Sources */,
 				2D34C6B01C6F7FAC009960E0 /* main.m in Sources */,
 				2D34BF4F1C6F7FAB009960E0 /* DigiBoosterDecoder.m in Sources */,
+				2DA213A81C78E809002866CD /* Playlist.mm in Sources */,
 				2D34BF4D1C6F7FAB009960E0 /* AudioDriver.m in Sources */,
 				2D34BF4C1C6F7FAB009960E0 /* AppDelegate.m in Sources */,
 				2D34BF501C6F7FAB009960E0 /* HivelyTrackerDecoder.m in Sources */,
@@ -533,44 +550,76 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0",
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/libxmp/4.3.10/include,
 					"/usr/local/Cellar/yaml-cpp/0.5.3/include",
+					/usr/local/Cellar/boost/1.60.0_1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/libxmp/4.3.10/lib,
 					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
+					/usr/local/Cellar/boost/1.60.0_1/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -582,38 +631,70 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/libxmp/4.3.10/include,
 					"/usr/local/Cellar/yaml-cpp/0.5.3/include",
+					/usr/local/Cellar/boost/1.60.0_1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/libxmp/4.3.10/lib,
 					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
+					/usr/local/Cellar/boost/1.60.0_1/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -661,6 +742,7 @@
 				DYLIB_CURRENT_VERSION = 1.8;
 				EXECUTABLE_PREFIX = lib;
 				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				INSTALL_PATH = "@rpath../Frameworks/";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -679,6 +761,7 @@
 				DYLIB_CURRENT_VERSION = 1.8;
 				EXECUTABLE_PREFIX = lib;
 				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				INSTALL_PATH = "@rpath../Frameworks/";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -702,8 +785,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				INSTALL_PATH = "@rpath../Frameworks/";
 				PRODUCT_NAME = digibooster3;
 			};
@@ -717,8 +799,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu89;
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_LINUX;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				INSTALL_PATH = "@rpath../Frameworks/";
 				PRODUCT_NAME = digibooster3;
 			};

@@ -214,7 +214,7 @@
 	verticalCentre = ([self bounds].size.height - _rowHeight) / 2;
 	textDrawYPos = verticalCentre + (_rowGap + _lineSpacing) / 2;
 	
-	if ([(NSObject*)_decoder conformsToProtocol:@protocol(PatternData)])
+	if (_decoder && [(NSObject*)_decoder conformsToProtocol:@protocol(PatternData)])
 	{
 		// Recast the decoder as one that supports pattern data
 		id<PatternData> ptnDataDecoder = (id<PatternData>)_decoder;

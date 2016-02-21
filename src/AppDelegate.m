@@ -17,7 +17,7 @@
 
 @implementation AppDelegate
 {
-	NSURL* currentFile;
+	PlaylistItem* currentPlaylistItem;
 
 	AudioDriver* audioDriver;
 	id<Decoder> decoder;
@@ -25,69 +25,125 @@
 	NSTimer* levelMeterTimer;
 	
 	PlayerState playerState;
+    Playlist* playlist;
+    PlaylistViewController* playlistViewController;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	playerState = STOPPED;
 	statusBox.layer.cornerRadius = 5.0f;
+
+    playlist = [[Playlist alloc] init];
+    playlistViewController = [[PlaylistViewController alloc] initWithWindowNibName:@"Playlist"];
+    playlistViewController.playlist = playlist;
 }
 
-- (IBAction)openFile:(id)sender
+- (void)openPlaylistItem:(PlaylistItem*)playlistItem
+{
+    currentPlaylistItem = playlistItem;
+    NSURL* url = playlistItem.url;
+
+    if (!self->audioDriver)
+    {
+        self->audioDriver = [[AudioDriver alloc] init];
+        if (!self->audioDriver)
+        {
+            NSAlert* errorMessage = [[NSAlert alloc] init];
+            [errorMessage setMessageText:@"Couldn't open sound driver."];
+            [errorMessage setAlertStyle:NSCriticalAlertStyle];
+            [errorMessage beginSheetModalForWindow:self->mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+            return;
+        }
+    }
+
+    if (self->decoder)
+    {
+        [self->decoder stop];
+        self->decoder = nil;
+    }
+
+    // Is it a DigiBooster module?
+    if ([url.pathExtension isEqualTo:@"dbm"])
+    {
+        self->decoder = [[DigiBoosterDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
+    }
+
+    // Is it a Hively/AHX module?
+    else if ([url.pathExtension isEqualTo:@"hvl"] || [url.pathExtension isEqualTo:@"ahx"])
+    {
+        self->decoder = [[HivelyTrackerDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
+    }
+
+    // Use XMP to load
+    else
+    {
+        self->decoder = [[XMPDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
+    }
+}
+
+- (void)openFile:(NSURL*)url
+{
+    // File path
+    currentPlaylistItem = [PlaylistItem playlistItemWithURL:url];
+
+    if (!self->audioDriver)
+    {
+        self->audioDriver = [[AudioDriver alloc] init];
+        if (!self->audioDriver)
+        {
+            NSAlert* errorMessage = [[NSAlert alloc] init];
+            [errorMessage setMessageText:@"Couldn't open sound driver."];
+            [errorMessage setAlertStyle:NSCriticalAlertStyle];
+            [errorMessage beginSheetModalForWindow:self->mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+            return;
+        }
+    }
+
+    if (self->decoder)
+    {
+        [self->decoder stop];
+        self->decoder = nil;
+    }
+
+    // Is it a DigiBooster module?
+    if ([url.pathExtension isEqualTo:@"dbm"])
+    {
+        self->decoder = [[DigiBoosterDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
+    }
+
+    // Is it a Hively/AHX module?
+    else if ([url.pathExtension isEqualTo:@"hvl"] || [url.pathExtension isEqualTo:@"ahx"])
+    {
+        self->decoder = [[HivelyTrackerDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
+    }
+
+    // Use XMP to load
+    else
+    {
+        self->decoder = [[XMPDecoder alloc] initWithDelegate:self andAudioDriver:self->audioDriver andFilePath:[url path]];
+    }
+}
+
+- (IBAction)openFileWithDialog:(id)sender
 {
     // Instantiate a file dialog
     NSOpenPanel* openDialog = [NSOpenPanel openPanel];
-    
+
     // Set filters and options
     [openDialog setCanChooseFiles:YES];
     [openDialog setCanChooseDirectories:NO];
     [openDialog setAllowsMultipleSelection:NO];
-    
+
     [openDialog beginWithCompletionHandler:^(NSInteger returnCode)
-	 {
-		 if (returnCode == NSOKButton)
-		 {
-			 // File path
-			 currentFile = [openDialog URL];
-			 
-			 if (!audioDriver)
-			 {
-				 audioDriver = [[AudioDriver alloc] init];
-				 if (!audioDriver)
-				 {
-					 NSAlert* errorMessage = [[NSAlert alloc] init];
-					 [errorMessage setMessageText:@"Couldn't open sound driver."];
-					 [errorMessage setAlertStyle:NSCriticalAlertStyle];
-					 [errorMessage beginSheetModalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
-					 return;
-				 }
-			 }
-			 
-			 if (decoder)
-			 {
-				 [decoder stop];
-				 decoder = nil;
-			 }
-			 
-			 // Is it a DigiBooster module?
-			 if ([currentFile.pathExtension isEqualTo:@"dbm"])
-			 {
-				 decoder = [[DigiBoosterDecoder alloc] initWithDelegate:self andAudioDriver:audioDriver andFilePath:[currentFile path]];
-			 }
-			 
-			 // Is it a Hively/AHX module?
-			 else if ([currentFile.pathExtension isEqualTo:@"hvl"] || [currentFile.pathExtension isEqualTo:@"ahx"])
-			 {
-				 decoder = [[HivelyTrackerDecoder alloc] initWithDelegate:self andAudioDriver:audioDriver andFilePath:[currentFile path]];
-			 }
-			 
-			 // Use XMP to load
-			 else
-			 {
-				 decoder = [[XMPDecoder alloc] initWithDelegate:self andAudioDriver:audioDriver andFilePath:[currentFile path]];
-			 }
-		 }
-	 }];
+     {
+         // TODO: Turn this into a proper load handler
+         if (returnCode != NSOKButton)
+             return;
+
+         [self openFile:[openDialog URL]];
+
+    }];
 }
 
 - (IBAction)changeVolume:(id)sender
@@ -100,108 +156,123 @@
 
 - (IBAction)transportControlsWereClicked:(id)sender
 {
-	if (decoder)
-	{
-		switch ([sender selectedSegment])
-		{
-			case 0:
-				// Previous button hit
-				[decoder backwards];
-				break;
+    switch ([sender selectedSegment])
+    {
+        case 0:
+            // Previous button hit
 
-			case 1:
-				// Play/Pause button hit
-				if (playerState != PLAYING)
-				{
-					playerState = PLAYING;
-                    [sender setImage:[NSImage imageNamed:BUTTON_IMAGE_PAUSE] forSegment:1];
-					[decoder play];
-				}
-				else
-				{
-					playerState = PAUSED;
-					[sender setImage:[NSImage imageNamed:BUTTON_IMAGE_PLAY] forSegment:1];
-					[decoder pause];
-				}
-				
-				break;
+            // Alt + button: previous position
+            if ([NSEvent modifierFlags] & NSAlternateKeyMask)
+                [decoder backwards];
+            else if ([playlist previous])
+            {
+                currentPlaylistItem.isPlaying = NO;
+                [self openPlaylistItem:[playlist currentPlaylistItem]];
+                [playlistViewController reloadData];
+            }
 
-			case 2:
-				// Stop button hit
-				playerState = STOPPED;
+            break;
 
-				// Stop the decoder and release our reference to it
-				[decoder stop];
-				decoder = nil;
+        case 1:
+            // Play/Pause button hit
+            if (playerState != PLAYING)
+            {
+                playerState = PLAYING;
+                [sender setImage:[NSImage imageNamed:BUTTON_IMAGE_PAUSE] forSegment:1];
+                [decoder play];
+                currentPlaylistItem.isPlaying = YES;
+                [playlistViewController reloadData];
+            }
+            else
+            {
+                playerState = PAUSED;
+                [sender setImage:[NSImage imageNamed:BUTTON_IMAGE_PLAY] forSegment:1];
+                [decoder pause];
+                currentPlaylistItem.isPlaying = NO;
+                [playlistViewController reloadData];
+            }
+            
+            break;
 
-				// Reset the PatternScope
-				[patternScope setDecoder:nil];
-				[patternScope setNeedsDisplay:YES];
+        case 2:
+            // Stop button hit
+            playerState = STOPPED;
 
-				// Reset the poistion and row counter
-				[patternCounter setStringValue:@"00"];
-				[positionCounter setStringValue:@"0/0"];
+            // Stop the decoder and release our reference to it
+            [decoder stop];
+            decoder = nil;
 
-				// Reset the seek slider
-				[seekSlider setEnabled:NO];
-				[seekSlider setIntValue:0];
-				[seekSlider setMaxValue:0];
-				[seekSlider setNumberOfTickMarks:2];
+            // Set playlist item playing flag
+            currentPlaylistItem.isPlaying = NO;
 
-				// Reset the status box
-				[statusBox setStringValue:@"{ No song loaded }"];
+            // Reset the PatternScope
+            [patternScope setDecoder:nil];
+            [patternScope setNeedsDisplay:YES];
 
-				[sender setImage:[NSImage imageNamed:BUTTON_IMAGE_PLAY] forSegment:1];
-				break;
+            // Reset the position and row counter
+            [patternCounter setStringValue:@"00"];
+            [positionCounter setStringValue:@"0/0"];
 
-			case 3:
-				// Next button hit
-				[decoder forwards];
-				break;
+            // Reset the file format indicator
+            [formatIndicator setStringValue:@""];
 
-			default:
-				break;
-		}
+            // Reset the seek slider
+            [seekSlider setEnabled:NO];
+            [seekSlider setIntValue:0];
+            [seekSlider setMaxValue:0];
+            [seekSlider setNumberOfTickMarks:2];
+
+            // Reset the status box
+            [statusBox setStringValue:@"{ No song loaded }"];
+
+            [sender setImage:[NSImage imageNamed:BUTTON_IMAGE_PLAY] forSegment:1];
+            break;
+
+        case 3:
+            // Next button hit
+            if ([NSEvent modifierFlags] & NSAlternateKeyMask)
+                [decoder forwards];
+            else if ([playlist next])
+            {
+                currentPlaylistItem.isPlaying = NO;
+                [self openPlaylistItem:[playlist currentPlaylistItem]];
+                [playlistViewController reloadData];
+            }
+            break;
+
+        default:
+            break;
 	}
 }
 
 - (IBAction)togglePlaylist:(id)sender
 {
-	if ([playlistWindow isVisible])
-	{
-		[playlistWindow close];
-	}
+    NSButton* button = (NSButton*) sender;
+    if ([[playlistViewController window] isVisible])
+    {
+        [button setState:NSOffState];
+        [playlistViewController close];
+    }
 	else
-	{
-		[playlistWindow makeKeyAndOrderFront:self];
-	}
-}
-
-- (IBAction)openXMPControls:(id)sender
-{
-	[NSApp beginSheet:xmpControls
-	   modalForWindow:mainWindow
-		modalDelegate:nil
-	   didEndSelector:nil
-		  contextInfo:nil];
-}
-
-- (IBAction)closeXMPControls:(id)sender
-{
-	[NSApp endSheet:xmpControls];
-	[xmpControls orderOut:sender];
+    {
+        [button setState:NSOnState];
+        [playlistViewController showWindow: self];
+    }
 }
 
 - (IBAction)togglePatternScope:(id)sender
 {
+    NSButton* button = (NSButton*) sender;
 	if ([patternScopeWindow isVisible])
-	{
+    {
+        [button setState:NSOffState];
 		[patternScopeWindow close];
-	}
+    }
 	else
-	{
+    {
+        [button setState:NSOnState];
 		[patternScopeWindow makeKeyAndOrderFront:self];
-	}
+    }
 }
 
 - (IBAction)patternScopeSetFontName:(NSPopUpButton *)sender
@@ -251,7 +322,7 @@
 	NSString* songTitle = [[sender songTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if ([songTitle length] == 0)
 	{
-		[statusBox setStringValue:[currentFile lastPathComponent]];
+		[statusBox setStringValue:[currentPlaylistItem.url lastPathComponent]];
 	}
 	else
 	{
@@ -284,6 +355,7 @@
 	{
 		decoder = sender;
 		[decoder play];
+        currentPlaylistItem.isPlaying = YES;
 	}
 }
 
@@ -324,7 +396,7 @@
 
 #pragma mark - PatternScope Options
 
-- (IBAction)blankZeroCheckBoxWasPressed:(NSButton *)sender
+- (IBAction)blankZeroCheckBoxWasClicked:(NSButton *)sender
 {
 	patternScope.blankZero = sender.state == NSOnState;
 }
@@ -334,12 +406,12 @@
 	patternScope.prospectiveMode = sender.state == NSOnState;
 }
 
-- (IBAction)lowercaseNotesCheckBoxWasPressed:(NSButton *)sender
+- (IBAction)lowercaseNotesCheckBoxWasClicked:(NSButton *)sender
 {
 	patternScope.lowercaseNotes = sender.state == NSOnState;
 }
 
-- (IBAction)lowercaseHexCheckBoxWasPressed:(NSButton *)sender
+- (IBAction)lowercaseHexCheckBoxWasClicked:(NSButton *)sender
 {
 	patternScope.lowercaseHex = sender.state == NSOnState;
 }

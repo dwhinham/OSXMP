@@ -17,8 +17,11 @@
 #import "XMPDecoder.h"
 
 #import "PatternScopeView.h"
+#import "Playlist.h"
+#import "PlaylistViewController.h"
 
-typedef NS_ENUM(NSUInteger, PlayerState) {
+typedef NS_ENUM(NSUInteger, PlayerState)
+{
 	PLAYING,
 	PAUSED,
 	STOPPED
@@ -28,7 +31,6 @@ typedef NS_ENUM(NSUInteger, PlayerState) {
 {
 	IBOutlet NSWindow* mainWindow;
 	IBOutlet NSWindow* patternScopeWindow;
-	IBOutlet NSWindow* playlistWindow;
 	
 	IBOutlet PatternScopeView* patternScope;
 	
@@ -42,7 +44,7 @@ typedef NS_ENUM(NSUInteger, PlayerState) {
 	IBOutlet NSPanel* xmpControls;
 }
 
-- (IBAction)openFile:(id)sender;
+- (IBAction)openFileWithDialog:(id)sender;
 - (IBAction)changeVolume:(id)sender;
 
 - (IBAction)xmpSetSeparation:(id)sender;

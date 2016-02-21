@@ -209,37 +209,34 @@
                             <action selector="seekSliderDidChangeValue:" target="494" id="H0W-ZH-m6m"/>
                         </connections>
                     </slider>
-                    <button verticalHuggingPriority="750" id="TyY-XP-ceE" userLabel="Vis Toggle">
-                        <rect key="frame" x="229" y="58" width="33" height="18"/>
+                    <button verticalHuggingPriority="750" id="lgH-EQ-rWL" userLabel="Playlist Toggle">
+                        <rect key="frame" x="229" y="90" width="33" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="recessed" title="PS" bezelStyle="recessed" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" id="KUL-aF-bLZ">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <buttonCell key="cell" type="recessed" title="PL" bezelStyle="recessed" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" id="EM0-K7-NVn">
+                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                             <font key="font" metaFont="miniSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="togglePatternScope:" target="494" id="MWx-xN-s9i"/>
+                            <action selector="togglePlaylist:" target="494" id="dOc-gS-mBa"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="mli-V0-wAg" userLabel="XMP Controls Toggle">
+                    <button verticalHuggingPriority="750" id="mli-V0-wAg" userLabel="Effects Toggle">
                         <rect key="frame" x="229" y="74" width="33" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="recessed" title="FX" bezelStyle="recessed" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" id="WX4-1V-nAg">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="miniSystem"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="openXMPControls:" target="494" id="pqK-64-B8c"/>
-                        </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="lgH-EQ-rWL" userLabel="Playlist Toggle">
-                        <rect key="frame" x="229" y="90" width="33" height="18"/>
+                    <button verticalHuggingPriority="750" id="TyY-XP-ceE" userLabel="PatternScope Toggle">
+                        <rect key="frame" x="229" y="58" width="33" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="recessed" title="PL" bezelStyle="recessed" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" id="EM0-K7-NVn">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <buttonCell key="cell" type="recessed" title="PS" bezelStyle="recessed" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" id="KUL-aF-bLZ">
+                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                             <font key="font" metaFont="miniSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="togglePlaylist:" target="494" id="dOc-gS-mBa"/>
+                            <action selector="togglePatternScope:" target="494" id="MWx-xN-s9i"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="SEh-hk-1jQ" userLabel="Position Indicator">
@@ -283,12 +280,16 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="openFile:" target="494" id="SDI-pc-uC2"/>
+                            <action selector="openFileWithDialog:" target="494" id="rdy-AQ-BId"/>
                         </connections>
                     </button>
                 </subviews>
             </view>
             <contentBorderThickness minY="0.0"/>
+            <connections>
+                <outlet property="delegate" destination="494" id="dfv-re-wJA"/>
+                <outlet property="transportControls" destination="oSi-xQ-Jrt" id="5ts-2P-cGX"/>
+            </connections>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
@@ -297,65 +298,13 @@
                 <outlet property="patternCounter" destination="HDe-CJ-LIV" id="1xC-MC-VHc"/>
                 <outlet property="patternScope" destination="XoU-RA-5cq" id="KvT-RE-tds"/>
                 <outlet property="patternScopeWindow" destination="41A-ge-VSb" id="2Ea-ot-vLA"/>
-                <outlet property="playlistWindow" destination="ih1-xA-qIb" id="8iQ-kw-g2p"/>
                 <outlet property="positionCounter" destination="SEh-hk-1jQ" id="OBD-bW-pQM"/>
                 <outlet property="seekSlider" destination="w4U-ZW-dL5" id="qCB-px-xc0"/>
                 <outlet property="statusBox" destination="j11-9d-KiD" id="VDn-eO-PTv"/>
                 <outlet property="volumeSlider" destination="Juk-cV-zdI" id="spB-40-aEg"/>
-                <outlet property="xmpControls" destination="3fL-ul-1Gv" id="3wX-Ge-JCd"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
-        <customView id="1N3-6S-sX7">
-            <rect key="frame" x="0.0" y="0.0" width="238" height="99"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <slider verticalHuggingPriority="750" id="FHp-bH-DBA">
-                    <rect key="frame" x="110" y="44" width="108" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="below" numberOfTickMarks="5" sliderType="linear" id="Lmr-WJ-XWO"/>
-                    <connections>
-                        <action selector="xmpSetSeparation:" target="494" id="7BO-aB-Dsb"/>
-                    </connections>
-                </slider>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="5kh-BX-UkG">
-                    <rect key="frame" x="10" y="46" width="87" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="L/R Separation:" id="Eqx-yd-Lem">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="9Jm-jn-ild">
-                    <rect key="frame" x="10" y="20" width="87" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Interpolation:" id="07K-x5-f7x">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="3Eb-di-8cg">
-                    <rect key="frame" x="107" y="15" width="114" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="NV9-WR-h8c">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" title="OtherViews" id="cgL-Td-4hb">
-                            <items>
-                                <menuItem title="None" id="Ck1-1a-PqK" userLabel="None"/>
-                                <menuItem title="Linear (default)" id="1kj-yr-irt" userLabel="Linear (default)"/>
-                                <menuItem title="Cubic Spline" id="kW6-zS-890" userLabel="Cubic Spline"/>
-                            </items>
-                        </menu>
-                        <connections>
-                            <action selector="xmpSetLerp:" target="494" id="Ppn-QW-Vlv"/>
-                        </connections>
-                    </popUpButtonCell>
-                </popUpButton>
-            </subviews>
-        </customView>
         <window title="VU Meters" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Onm-Tr-a5P" userLabel="VU Meters" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" texturedBackground="YES" unifiedTitleAndToolbar="YES"/>
             <rect key="contentRect" x="335" y="390" width="266" height="107"/>
@@ -376,7 +325,7 @@
             </view>
             <contentBorderThickness minY="0.0"/>
         </window>
-        <window title="PatternScope" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" id="41A-ge-VSb" userLabel="PatternScope" customClass="NSPanel">
+        <window title="PatternScope" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="41A-ge-VSb" userLabel="PatternScope" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="335" y="390" width="426" height="286"/>
@@ -394,7 +343,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="blankZeroCheckBoxWasPressed:" target="494" id="C5l-SL-Bgv"/>
+                            <action selector="blankZeroCheckBoxWasClicked:" target="494" id="lGw-Nb-ADr"/>
                         </connections>
                     </button>
                     <customView wantsLayer="YES" id="XoU-RA-5cq" customClass="PatternScopeView">
@@ -441,7 +390,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="prospectiveCheckBoxWasClicked:" target="494" id="Mtz-Ya-lKi"/>
+                            <action selector="prospectiveCheckBoxWasClicked:" target="494" id="L1u-Pb-CF5"/>
                         </connections>
                     </button>
                     <button id="r4e-6S-a9u">
@@ -452,7 +401,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="lowercaseNotesCheckBoxWasPressed:" target="494" id="7TR-ba-vJt"/>
+                            <action selector="lowercaseNotesCheckBoxWasClicked:" target="494" id="pAQ-d7-VxG"/>
                         </connections>
                     </button>
                     <button id="BQ9-zz-nqg">
@@ -463,111 +412,12 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="lowercaseHexCheckBoxWasPressed:" target="494" id="mw8-Kv-c78"/>
+                            <action selector="lowercaseHexCheckBoxWasClicked:" target="494" id="jmT-GJ-Rnk"/>
                         </connections>
                     </button>
                 </subviews>
             </view>
             <contentBorderThickness minY="22"/>
-        </window>
-        <window title="Playlist" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="ih1-xA-qIb" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="132" width="550" height="296"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
-            <view key="contentView" id="gou-1a-7Gl">
-                <rect key="frame" x="0.0" y="0.0" width="550" height="296"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <segmentedControl verticalHuggingPriority="750" id="Lqf-9o-mV6">
-                        <rect key="frame" x="446" y="3" width="100" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectAny" id="RdQ-u4-0CF">
-                            <font key="font" metaFont="system"/>
-                            <segments>
-                                <segment width="32"/>
-                                <segment width="32" selected="YES" tag="1"/>
-                                <segment width="32">
-                                    <nil key="label"/>
-                                </segment>
-                            </segments>
-                        </segmentedCell>
-                    </segmentedControl>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="Hov-SQ-Kq7">
-                        <rect key="frame" x="-1" y="31" width="552" height="266"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" id="UrI-uR-LCo">
-                            <rect key="frame" x="1" y="17" width="550" height="248"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="icD-aw-exH" id="XKk-Oi-2Dz">
-                                    <rect key="frame" x="0.0" y="0.0" width="119" height="19"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                    <tableColumns>
-                                        <tableColumn identifier="FileCell" width="116" minWidth="40" maxWidth="1000" id="ohV-3p-D0t">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
-                                            </tableHeaderCell>
-                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="aBt-xq-d8U">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        </tableColumn>
-                                    </tableColumns>
-                                    <connections>
-                                        <outlet property="dataSource" destination="eyi-K2-uXm" id="QtE-1v-VwQ"/>
-                                        <outlet property="delegate" destination="eyi-K2-uXm" id="v2F-bP-jOe"/>
-                                    </connections>
-                                </tableView>
-                            </subviews>
-                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="rtR-Ob-26Y">
-                            <rect key="frame" x="1" y="119" width="223" height="15"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="CvX-dP-9x9">
-                            <rect key="frame" x="224" y="17" width="15" height="102"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <tableHeaderView key="headerView" id="icD-aw-exH">
-                            <rect key="frame" x="0.0" y="0.0" width="550" height="17"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </tableHeaderView>
-                    </scrollView>
-                </subviews>
-            </view>
-            <contentBorderThickness minY="32"/>
-        </window>
-        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="3fL-ul-1Gv" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="139" y="81" width="550" height="275"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
-            <view key="contentView" id="9d6-YM-bks">
-                <rect key="frame" x="0.0" y="0.0" width="550" height="275"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" id="egK-o0-I8Z">
-                        <rect key="frame" x="457" y="13" width="76" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kVw-9Y-naJ">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="closeXMPControls:" target="494" id="rAA-5L-gTD"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
         </window>
         <customObject id="eyi-K2-uXm" customClass="PlaylistViewController"/>
     </objects>

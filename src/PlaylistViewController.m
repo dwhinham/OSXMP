@@ -1,136 +1,162 @@
+//
+//  PlaylistViewController.m
+//  OSXMP
+//
+//  Created by Dale Whinham on 15/02/2016.
+//  Copyright (c) 2016 Dale Whinham. All rights reserved.
+//
 
 #import "PlaylistViewController.h"
 
-/* Notes on how this demo window was created:
- 
- In ATBasicTableViewWindow.xib in IB:
- The nib has the "File's Owner" Class Identity set to PlaylistTableViewController (this class).
- The NSTableView in the nib has the 'delegate' and 'dataSource' outlets set to the "File's Owner" (this class).
- The first NSTableColumn in the NSTableView has the 'identifier' set to "MainCell".
- The second NSTableColumn in the NSTableView has the 'identifier' set to "SizeCell".
- The NSTableView has two reuse identifier assocations: "MainCell" and "SizeCell" are both associated with the nib ATBasicTableViewCells.xib.
- The "File's Owner" _tableView outlet was set to the nib in the window.
- 
- In ATBasicTableViewCells.xib in IB:
- The nib has the "File's Owner" Class Identity set to ATBasicTableViewWindowController (this class).
- Two cells were added to the nib.
- The identifier for the first is set to "MainCell", and the second "SizeCell".
- Each NSTableCellView already had the 'textField' outlet properly set to the NSTextField in the cell by IB when the NSTableCellView wsa created.
- */
-
-// Sample data we will display
-static NSString *ATTableData[] = {
-    @"NSQuickLookTemplate",
-    @"NSBluetoothTemplate",
-    @"NSIChatTheaterTemplate",
-    @"NSSlideshowTemplate",
-    @"NSActionTemplate",
-    @"NSSmartBadgeTemplate",
-    @"NSIconViewTemplate",
-    @"NSListViewTemplate",
-    @"NSColumnViewTemplate",
-    @"NSFlowViewTemplate",
-    @"NSPathTemplate",
-    @"NSInvalidDataFreestandingTemplate",
-    @"NSLockLockedTemplate",
-    @"NSLockUnlockedTemplate",
-    @"NSGoRightTemplate",
-    @"NSGoLeftTemplate",
-    @"NSRightFacingTriangleTemplate",
-    @"NSLeftFacingTriangleTemplate",
-    @"NSAddTemplate",
-    @"NSRemoveTemplate",
-    @"NSRevealFreestandingTemplate",
-    @"NSFollowLinkFreestandingTemplate",
-    @"NSEnterFullScreenTemplate",
-    @"NSExitFullScreenTemplate",
-    @"NSStopProgressTemplate",
-    @"NSStopProgressFreestandingTemplate",
-    @"NSRefreshTemplate",
-    @"NSRefreshFreestandingTemplate",
-    @"NSBonjour",
-    @"NSComputer",
-    @"NSFolderBurnable",
-    @"NSFolderSmart",
-    @"NSFolder",
-    @"NSNetwork",
-    @"NSMobileMe",
-    @"NSMultipleDocuments",
-    @"NSUserAccounts",
-    @"NSPreferencesGeneral",
-    @"NSAdvanced",
-    @"NSInfo",
-    @"NSFontPanel",
-    @"NSColorPanel",
-    @"NSUser",
-    @"NSUserGroup",
-    @"NSEveryone",
-    @"NSUserGuest",
-    @"NSMenuOnStateTemplate",
-    @"NSMenuMixedStateTemplate",
-    @"NSApplicationIcon",
-    @"NSTrashEmpty",
-    @"NSTrashFull",
-    @"NSHomeTemplate",
-    @"NSBookmarksTemplate",
-    @"NSCaution",
-    @"NSStatusAvailable",
-    @"NSStatusPartiallyAvailable",
-    @"NSStatusUnavailable",
-    @"NSStatusNone",
-    nil };
-
 @implementation PlaylistViewController
 
-- (void) windowDidLoad {
+@synthesize playlist = _playlist;
+
+- (void)windowDidLoad
+{
     [super windowDidLoad];
-    // Load up our sample data
-    _playlistContents = [NSMutableArray new];
-    // Walk each string in the array until we hit the end (nil)
-    NSString * __strong *data = &ATTableData[0];
-    while (*data != nil) {
-        NSString *name = *data;
-        NSImage *image = [NSImage imageNamed:name];
-        // our model will consist of a dictionary with Name/Image key pairs
-        NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"Name", image, @"Image", nil];
-        [_playlistContents addObject:dictionary];
-        data++;
-    }
+
+    // Enable drag and drop for the NSTableView
+    [_playlistView registerForDraggedTypes: [NSArray arrayWithObject: NSFilenamesPboardType]];
+
+    // Refresh the view with
     [_playlistView reloadData];
-		NSLog(@"I am alive!");
 }
 
-// The only essential/required tableview dataSource method
-- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView {
-    return [_playlistContents count];
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return (NSInteger)_playlist.count;
 }
 
-// This method is optional if you use bindings to provide the data
-- (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    // Group our "model" object, which is a dictionary
-    NSDictionary *dictionary = [_playlistContents objectAtIndex:row];
-    
-    // In IB the tableColumn has the identifier set to the same string as the keys in our dictionary
-    NSString *identifier = [tableColumn identifier];
-    
-    if ([identifier isEqualToString:@"MainCell"]) {
-        // We pass us as the owner so we can setup target/actions into this main controller object
-        NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
-        // Then setup properties on the cellView based on the column
-        cellView.textField.stringValue = [dictionary objectForKey:@"Name"];
-        cellView.imageView.objectValue = [dictionary objectForKey:@"Image"];
-        return cellView;
-    } else if ([identifier isEqualToString:@"SizeCell"]) {
-        NSTextField *textField = [tableView makeViewWithIdentifier:identifier owner:self];
-        NSImage *image = [dictionary objectForKey:@"Image"];
-        NSSize size = image ? [image size] : NSZeroSize;
-        NSString *sizeString = [NSString stringWithFormat:@"%.0fx%.0f", size.width, size.height];
-        textField.objectValue = sizeString;
-        return textField;
-    } else {
-        NSAssert1(NO, @"Unhandled table column identifier %@", identifier);
+- (id)tableView:(NSTableView*) tableView objectValueForTableColumn:(NSTableColumn*) tableColumn row:(NSInteger) rowIndex
+{
+    PlaylistItem* playlistItem = [_playlist playlistItemAtIndex:(NSUInteger)rowIndex];
+    NSString* identifier = [tableColumn identifier];
+
+    if ([identifier isEqualToString:@"Play"] && playlistItem.isPlaying)
+    {
+        return [NSImage imageNamed:@"controller-play"];
     }
+    else if ([identifier isEqualToString:@"File"])
+    {
+        return [playlistItem.url lastPathComponent];
+    }
+
     return nil;
+}
+
+- (void)reloadData
+{
+    [_playlistView reloadData];
+}
+
+- (void)addItems
+{
+    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setAllowsMultipleSelection:YES];
+
+    [openPanel beginWithCompletionHandler:^(NSInteger returnCode)
+     {
+         if (returnCode != NSOKButton)
+             return;
+
+         if (!self->_playlist)
+             return;
+
+         for (NSURL* url in [openPanel URLs])
+             [self->_playlist addPlaylistItem:[PlaylistItem playlistItemWithURL:url]];
+
+         [self->_playlistView reloadData];
+     }];
+}
+
+- (void)loadPlaylist
+{
+    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setAllowedFileTypes:@[@"osxmplaylist"]];
+    [openPanel setAllowsMultipleSelection:NO];
+
+    [openPanel beginWithCompletionHandler:^(NSInteger returnCode)
+     {
+         if (returnCode != NSOKButton)
+             return;
+
+         [self->_playlist deserializeFromYAML: [openPanel URL]];
+         [self->_playlistView reloadData];
+     }];
+}
+
+- (void)savePlaylist
+{
+    NSSavePanel* savePanel = [NSSavePanel savePanel];
+    [savePanel setAllowedFileTypes:@[@"osxmplaylist"]];
+
+    [savePanel beginWithCompletionHandler:^(NSInteger returnCode)
+     {
+         if (returnCode != NSOKButton)
+             return;
+
+         [self->_playlist serializeToYAML: [savePanel URL]];
+     }];
+}
+
+#pragma mark Playlist control buttons
+- (IBAction)playlistButtonsWereClicked:(id)sender
+{
+    switch ([sender selectedSegment])
+    {
+        // Add
+        case 0:
+            [self addItems];
+            break;
+
+        // Delete
+        case 1:
+        {
+            [self->_playlist removePlaylistItemsAtIndexes:[_playlistView selectedRowIndexes]];
+            [_playlistView deselectAll:nil];
+            [_playlistView reloadData];
+            break;
+        }
+
+        // Load
+        case 2:
+            [self loadPlaylist];
+            break;
+
+        // Save
+        case 3:
+            [self savePlaylist];
+            break;
+    }
+}
+
+#pragma mark Drag and drop operations
+- (NSDragOperation)tableView:(NSTableView*) tableView
+                validateDrop:(id) info
+                 proposedRow:(NSInteger)row
+       proposedDropOperation:(NSTableViewDropOperation)op
+{
+    return op == NSTableViewDropAbove;
+}
+
+- (BOOL)tableView:(NSTableView*) tableView
+       acceptDrop:(id) info
+              row:(NSInteger) row
+    dropOperation:(NSTableViewDropOperation) dropOperation
+{
+    NSPasteboard* pboard = [info draggingPasteboard];
+    NSArray* files = [pboard propertyListForType:NSFilenamesPboardType];
+
+    for (NSString* path in files)
+    {
+        PlaylistItem* item = [PlaylistItem playlistItemWithURL:[NSURL fileURLWithPath:path]];
+        [_playlist insertPlaylistItem:item atIndex:(NSUInteger)row];
+    }
+
+    [_playlistView reloadData];
+    return YES;
 }
 
 @end
