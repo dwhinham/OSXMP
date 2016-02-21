@@ -389,6 +389,16 @@
 	[patternScope setCurrentPosition:posNumber];
 }
 
+- (void)playbackDidFinish:(id)sender
+{
+    NSLog(@"Playback finished");
+    if (sender == decoder && [playlist next])
+    {
+        [self openPlaylistItem:[playlist currentPlaylistItem]];
+        [playlistViewController reloadData];
+    }
+}
+
 - (IBAction)seekSliderDidChangeValue:(NSSlider *)sender
 {
 	if (decoder.supportsSeeking)

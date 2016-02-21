@@ -9,19 +9,26 @@
 #import "DigiBoosterDecoder.h"
 
 @implementation DigiBoosterDecoder : NSObject
+{
+    BOOL _hasAdvancedPastFirstOrder;
+}
 
-@synthesize type		= _type,
-			audioDriver = _audioDriver,
-			delegate	= _delegate;
+@synthesize type		= _type;
+@synthesize	audioDriver = _audioDriver;
+@synthesize	delegate	= _delegate;
 
 // C callback for DigiBooster update events
 static void db3Callback(void* udata, struct UpdateEvent* uevent)
 {
 	DigiBoosterDecoder* decoder = (__bridge DigiBoosterDecoder*)udata;
-	
+
+    // ue_Order seems to get to -1 when the song is over
 	if (uevent->ue_Order == -1)
-		return;
-	
+    {
+        decoder->_play = NO;
+        return;
+    }
+
 	if (decoder->_delegate)
 	{
 		dispatch_async(dispatch_get_main_queue(), ^(void)
@@ -31,9 +38,9 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 						   [decoder->_delegate patternRowNumberDidChange:decoder withRowNumber:uevent->ue_Row andPatternLength:patternLength];
 
 						   // If the position has changed, let the delegate know
-						   if (decoder->_currentPosition != uevent->ue_Order)
+						   if (decoder->_currentPosition != (unsigned int) uevent->ue_Order)
                            {
-                               decoder->_currentPosition = uevent->ue_Order;
+                               decoder->_currentPosition = (unsigned int) uevent->ue_Order;
 							   [decoder->_delegate positionNumberDidChange:decoder withPosNumber:uevent->ue_Order];
                            }
 					   });
@@ -129,7 +136,6 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 
 - (BOOL)play
 {
-	//_currentPosition = -1;
 	_play = YES;
 
     __block dispatch_semaphore_t semaphore = _audioDriver.semaphore;
@@ -139,16 +145,26 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 					   while (self->_play)
 					   {
 						   int16_t buffer[32];
-						   if (!DB3_Mix(self->_db3Engine, 16, buffer)) break;
-						   
+						   if (!DB3_Mix(self->_db3Engine, 16, buffer))
+                               break;
+
 						   while (!TPCircularBufferProduceBytes(self->_audioDriver.outputBuffer, buffer, sizeof(buffer)))
                            {
                                // Wait for semaphore
                                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-                               if (!self->_play) return;
+                               if (!self->_play)
+                                   break;
                            }
 					   }
+
+                       // Song finished
+                       dispatch_async(dispatch_get_main_queue(), ^(void)
+                                      {
+                                          if (self->_delegate)
+                                              [self->_delegate playbackDidFinish:self];
+                                      });
 				   });
+
 	[_audioDriver start];
 	return YES;
 }
@@ -192,11 +208,11 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 - (BOOL)seekPosition: (int)position
 {
 	// Validate position
-	if (![self validatePosition: position])
+	if (![self validatePosition: (unsigned int) position])
 	{
 		return NO;
 	}
-	DB3_SetPos(_db3Engine, 0, position, 0);
+	DB3_SetPos(_db3Engine, 0, (uint32_t)position, 0);
 	return YES;
 }
 
@@ -293,7 +309,7 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
 	return NO;
 }
 
-- (BOOL)validatePosition: (UInt32)position
+- (BOOL)validatePosition: (unsigned int)position
 {
     return position < _db3Module->Songs[0]->NumOrders;
 }

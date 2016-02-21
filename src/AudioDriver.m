@@ -41,13 +41,13 @@ OSStatus outputCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlag
 	
 	// Get pointer to start of circular buffer and number of bytes available in circular buffer
     UInt32 availableBytes;
-    SInt16 *sourceBuffer = TPCircularBufferTail(outputBuffer, &availableBytes);
+    SInt16 *sourceBuffer = TPCircularBufferTail(outputBuffer, (int32_t*)&availableBytes);
 	
 	// Copy the audio data
     memcpy(destBuffer, sourceBuffer, MIN(bytesToCopy, availableBytes));
 	
 	// Consume bytes in circular buffer
-    TPCircularBufferConsume(outputBuffer, MIN(bytesToCopy, availableBytes));
+    TPCircularBufferConsume(outputBuffer, MIN((int32_t)bytesToCopy, (int32_t)availableBytes));
 	
 	// Notify consumed
 	dispatch_semaphore_signal(audioDriver->_semaphore);

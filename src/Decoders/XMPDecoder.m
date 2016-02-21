@@ -120,15 +120,16 @@
 						   xmp_play_frame(self->_xmpCtx);
 						   xmp_get_frame_info(self->_xmpCtx, &self->_xmpFrameInfo);
 						   
-						   //if (_xmpFrameInfo.loop_count > 0)
-						   //	break;
+						   if (self->_xmpFrameInfo.loop_count > 0)
+                               break;
 						   
 						   // Returns false if buffer is full
 						   while (!TPCircularBufferProduceBytes(self->_audioDriver.outputBuffer, self->_xmpFrameInfo.buffer, self->_xmpFrameInfo.buffer_size))
 						   {
 							   // Wait for semaphore (aka. down)
 							   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-                               if (!self->_play) return;
+                               if (!self->_play)
+                                   return;
 						   }
 						   
 						   // Update UI if position/row changes
@@ -152,6 +153,13 @@
 											  }
 										  });
 					   }
+
+                       // Song finished
+                       dispatch_async(dispatch_get_main_queue(), ^(void)
+                                      {
+                                           if (self->_delegate)
+                                               [self->_delegate playbackDidFinish:self];
+                                      });
 				   });
 
 	[_audioDriver start];

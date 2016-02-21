@@ -16,4 +16,6 @@
 
 - (void)patternRowNumberDidChange: (id)sender withRowNumber: (int)rowNumber andPatternLength: (int)patternLength;
 - (void)positionNumberDidChange: (id)sender withPosNumber: (int)posNumber;
+
+- (void)playbackDidFinish: (id)sender;
 @end

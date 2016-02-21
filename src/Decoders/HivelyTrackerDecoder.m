@@ -106,6 +106,10 @@
 						   memset(&buffer, 0, sizeof(buffer));
 						   
 						   hvl_DecodeFrame(self->_hvlModule, &buffer[0], &buffer[2], 4);
+
+                           // TODO: Handle repeats
+                           if (_hvlModule->ht_SongEndReached)
+                               break;
 						   
 						   while (!TPCircularBufferProduceBytes(self->_audioDriver.outputBuffer, buffer, sizeof(buffer)))
 						   {
@@ -133,6 +137,13 @@
 											  self->_currentRow = self->_hvlModule->ht_NoteNr;
 										  });
 					   }
+
+                       // Song finished
+                       dispatch_async(dispatch_get_main_queue(), ^(void)
+                                      {
+                                          if (self->_delegate)
+                                              [self->_delegate playbackDidFinish:self];
+                                      });
 				   });
 	[_audioDriver start];
 	return YES;
