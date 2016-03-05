@@ -22,25 +22,25 @@
 
 typedef NS_ENUM(NSUInteger, PlayerState)
 {
-	PLAYING,
-	PAUSED,
-	STOPPED
+    PLAYING,
+    PAUSED,
+    STOPPED
 };
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, DecoderDelegate>
 {
-	IBOutlet NSWindow* mainWindow;
-	IBOutlet NSWindow* patternScopeWindow;
-	
-	IBOutlet PatternScopeView* patternScope;
-	
-	IBOutlet NSTextField* statusBox;
-	IBOutlet NSTextField* positionCounter;
-	IBOutlet NSTextField* patternCounter;
-	IBOutlet NSTextField* formatIndicator;
+    IBOutlet NSWindow* mainWindow;
+    IBOutlet NSWindow* patternScopeWindow;
+    
+    IBOutlet PatternScopeView* patternScope;
+    
+    IBOutlet NSTextField* statusBox;
+    IBOutlet NSTextField* positionCounter;
+    IBOutlet NSTextField* patternCounter;
+    IBOutlet NSTextField* formatIndicator;
 
-	IBOutlet NSSlider* seekSlider;
-	IBOutlet NSSlider* volumeSlider;
+    IBOutlet NSSlider* seekSlider;
+    IBOutlet NSSlider* volumeSlider;
 }
 
 + (NSUInteger)getTickCount;

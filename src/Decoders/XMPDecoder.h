@@ -11,12 +11,13 @@
 
 @interface XMPDecoder : NSObject <Decoder, PatternData>
 {
-	BOOL _play;
-	xmp_context _xmpCtx;
-	struct xmp_module_info* _xmpModuleInfo;
-	struct xmp_frame_info _xmpFrameInfo;
+    BOOL _play;
+    xmp_context _xmpCtx;
+    struct xmp_module_info* _xmpModuleInfo;
+    struct xmp_frame_info _xmpFrameInfo;
 }
 
 @property (nonatomic, assign, readonly) xmp_context xmpContext;
 
 @end
+

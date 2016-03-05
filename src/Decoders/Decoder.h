@@ -2,7 +2,7 @@
 //  Decoder.h
 //  OSXMP
 //
-//	Definition of the Decoder protocol.
+//  Definition of the Decoder protocol.
 //
 //  Created by Dale Whinham on 25/05/2014.
 //  Copyright (c) 2014 Dale Whinham. All rights reserved.
@@ -16,21 +16,21 @@
 // Add player types here for identification
 typedef NS_ENUM(NSUInteger, DecoderType)
 {
-	DECODER_ADPLUG,
-	DECODER_BASS,
-	DECODER_DB3,
-	DECODER_DUMB,
-	DECODER_HIVELY,
-	DECODER_MILKY,
-	DECODER_RESID,
-	DECODER_UADE,
-	DECODER_XMP
+    DECODER_ADPLUG,
+    DECODER_BASS,
+    DECODER_DB3,
+    DECODER_DUMB,
+    DECODER_HIVELY,
+    DECODER_MILKY,
+    DECODER_RESID,
+    DECODER_UADE,
+    DECODER_XMP
 };
 
-@protocol Decoder
+@protocol Decoder<NSObject>
 
 // Instance properties
-@property (nonatomic, assign, readonly) DecoderType type;
+@property (nonatomic, assign, readonly)  DecoderType type;
 @property (nonatomic, strong, readwrite) AudioDriver* audioDriver;
 @property (nonatomic, assign, readwrite) id<DecoderDelegate> delegate;
 
@@ -48,14 +48,14 @@ typedef NS_ENUM(NSUInteger, DecoderType)
 - (BOOL)backwards;
 - (BOOL)stop;
 
-- (BOOL)seekPosition: (int)position;
-- (BOOL)seekTimeMillis: (int)timeMillis;
+- (BOOL)seekPosition: (unsigned int)position;
+- (BOOL)seekTimeMillis: (unsigned long long)timeMillis;
 
 // Properties
 - (NSString*)fileFormat;
 - (NSString*)songTitle;
-- (int)songLength;
-- (int)channels;
+- (unsigned int)songLength;
+- (unsigned int)channels;
 
 // Subsong capabilities
 - (BOOL)hasNextSubSong;

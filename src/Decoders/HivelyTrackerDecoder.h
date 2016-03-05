@@ -11,11 +11,12 @@
 
 @interface HivelyTrackerDecoder : NSObject<Decoder, PatternData>
 {
-	BOOL _play;
-	struct hvl_tune* _hvlModule;
+    BOOL _play;
+    struct hvl_tune* _hvlModule;
 
-	int _currentRow;
-	int _currentPosition;
+    int _currentRow;
+    int _currentPosition;
 }
 
 @end
+

@@ -10,23 +10,23 @@
 
 @implementation PatternScopeView
 
-@synthesize decoder = _decoder;
-@synthesize channels = _channels;
-@synthesize currentRow = _currentRow;
-@synthesize currentPosition = _currentPosition;
+@synthesize decoder             = _decoder;
+@synthesize channels            = _channels;
+@synthesize currentRow          = _currentRow;
+@synthesize currentPosition     = _currentPosition;
 
-@synthesize blankZero = _blankZero;
-@synthesize prospectiveMode = _prospectiveMode;
-@synthesize lowercaseNotes = _lowercaseNotes;
-@synthesize lowercaseHex = _lowercaseHex;
+@synthesize blankZero           = _blankZero;
+@synthesize prospectiveMode     = _prospectiveMode;
+@synthesize lowercaseNotes      = _lowercaseNotes;
+@synthesize lowercaseHex        = _lowercaseHex;
 
-@synthesize fontName = _fontName;
-@synthesize fontSize = _fontSize;
+@synthesize fontName            = _fontName;
+@synthesize fontSize            = _fontSize;
 
-@synthesize defaultRowColor = _defaultRowColor;
-@synthesize currentRowColor = _currentRowColor;
-@synthesize beat1RowColor = _beat1RowColor;
-@synthesize beat2RowColor = _beat2RowColor;
+@synthesize defaultRowColor     = _defaultRowColor;
+@synthesize currentRowColor     = _currentRowColor;
+@synthesize beat1RowColor       = _beat1RowColor;
+@synthesize beat2RowColor       = _beat2RowColor;
 @synthesize prospectiveRowColor = _prospectiveRowColor;
 
 - (int)nybbleToHex:(int)nybble
@@ -84,7 +84,7 @@
 	[self setNeedsDisplay:YES];
 }
 
-- (void)setCurrentPosition:(int)currentPosition
+- (void)setCurrentPosition:(unsigned int)currentPosition
 {
 	_currentPosition = currentPosition;
 	[self setNeedsDisplay:YES];
@@ -214,7 +214,7 @@
 	verticalCentre = ([self bounds].size.height - _rowHeight) / 2;
 	textDrawYPos = verticalCentre + (_rowGap + _lineSpacing) / 2;
 	
-	if (_decoder && [(NSObject*)_decoder conformsToProtocol:@protocol(PatternData)])
+	if (_decoder && [_decoder conformsToProtocol:@protocol(PatternData)])
 	{
 		// Recast the decoder as one that supports pattern data
 		id<PatternData> ptnDataDecoder = (id<PatternData>)_decoder;

@@ -17,19 +17,19 @@
 
 @implementation AppDelegate
 {
-	PlaylistItem* currentPlaylistItem;
+    PlaylistItem* currentPlaylistItem;
 
-	AudioDriver* audioDriver;
-	id<Decoder> decoder;
+    AudioDriver* audioDriver;
+    id<Decoder> decoder;
 
-	NSUInteger previousButtonLastPressed;
-	
-	PlayerState playerState;
+    NSUInteger previousButtonLastPressed;
+
+    PlayerState playerState;
     Playlist* playlist;
     PlaylistViewController* playlistViewController;
 }
 
-- (NSUInteger)getTickCount
++ (NSUInteger)getTickCount
 {
     // Static variable guaranteed to be zero-initialised
     static mach_timebase_info_data_t timebaseInfo;
@@ -48,8 +48,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	playerState = STOPPED;
-	statusBox.layer.cornerRadius = 5.0f;
+    playerState = STOPPED;
+    statusBox.layer.cornerRadius = 5.0f;
 
     playlist = [[Playlist alloc] init];
     playlistViewController = [[PlaylistViewController alloc] initWithWindowNibName:@"Playlist"];
@@ -134,10 +134,10 @@
 
 - (IBAction)changeVolume:(id)sender
 {
-	if (audioDriver)
-	{
-		[audioDriver setVolume:[sender floatValue]];
-	}
+    if (audioDriver)
+    {
+        [audioDriver setVolume:[sender floatValue]];
+    }
 }
 
 - (IBAction)transportControlsWereClicked:(id)sender
@@ -149,7 +149,7 @@
             if ([NSEvent modifierFlags] & NSAlternateKeyMask)
                 [decoder backwards];
 
-            else if (previousButtonLastPressed && [self getTickCount] - previousButtonLastPressed < 2000 && [playlist previous])
+            else if (previousButtonLastPressed && [AppDelegate getTickCount] - previousButtonLastPressed < 2000 && [playlist previous])
             {
                 [self openPlaylistItem:[playlist currentPlaylistItem]];
                 [playlistViewController reloadData];
@@ -159,7 +159,7 @@
                 [decoder seekPosition:0];
             }
 
-            previousButtonLastPressed = [self getTickCount];
+            previousButtonLastPressed = [AppDelegate getTickCount];
 
             break;
 
@@ -187,7 +187,7 @@
                 currentPlaylistItem.isPlaying = NO;
                 [playlistViewController reloadData];
             }
-            
+
             break;
 
         case 2:
@@ -237,7 +237,7 @@
 
         default:
             break;
-	}
+    }
 }
 
 - (IBAction)togglePlaylist:(id)sender
@@ -248,7 +248,7 @@
         [button setState:NSOffState];
         [playlistViewController close];
     }
-	else
+    else
     {
         [button setState:NSOnState];
         [playlistViewController showWindow: self];
@@ -258,125 +258,125 @@
 - (IBAction)togglePatternScope:(id)sender
 {
     NSButton* button = (NSButton*) sender;
-	if ([patternScopeWindow isVisible])
+    if ([patternScopeWindow isVisible])
     {
         [button setState:NSOffState];
-		[patternScopeWindow close];
+        [patternScopeWindow close];
     }
-	else
+    else
     {
         [button setState:NSOnState];
-		[patternScopeWindow makeKeyAndOrderFront:self];
+        [patternScopeWindow makeKeyAndOrderFront:self];
     }
 }
 
 - (IBAction)patternScopeSetFontName:(NSPopUpButton *)sender
 {
-	[patternScope setFontName:[sender titleOfSelectedItem]];
+    [patternScope setFontName:[sender titleOfSelectedItem]];
 }
 
 - (IBAction)patternScopeSetFontSize:(NSSlider *)sender
 {
-	[patternScope setFontSize:[sender floatValue]];
+    [patternScope setFontSize:[sender floatValue]];
 }
 
 - (IBAction)xmpSetSeparation:(id)sender
 {
-	//	if (xmpCtx)
-	//	{
-	//		xmp_set_player(xmpCtx, XMP_PLAYER_MIX, [sender intValue]);
-	//	}
+    //  if (xmpCtx)
+    //  {
+    //      xmp_set_player(xmpCtx, XMP_PLAYER_MIX, [sender intValue]);
+    //  }
 }
 
 - (IBAction)xmpSetLerp:(id)sender
 {
-	if (decoder && [decoder type] == DECODER_XMP)
-	{
-		switch ([sender indexOfSelectedItem])
-		{
-			case 0:
-				xmp_set_player(((XMPDecoder *)decoder).xmpContext, XMP_PLAYER_INTERP, XMP_INTERP_NEAREST);
-				break;
+    if (decoder && [decoder type] == DECODER_XMP)
+    {
+        switch ([sender indexOfSelectedItem])
+        {
+            case 0:
+                xmp_set_player(((XMPDecoder *)decoder).xmpContext, XMP_PLAYER_INTERP, XMP_INTERP_NEAREST);
+                break;
 
-			case 1:
-				xmp_set_player(((XMPDecoder *)decoder).xmpContext, XMP_PLAYER_INTERP, XMP_INTERP_LINEAR);
-				break;
+            case 1:
+                xmp_set_player(((XMPDecoder *)decoder).xmpContext, XMP_PLAYER_INTERP, XMP_INTERP_LINEAR);
+                break;
 
-			case 2:
-				xmp_set_player(((XMPDecoder *)decoder).xmpContext, XMP_PLAYER_INTERP, XMP_INTERP_SPLINE);
-				break;
+            case 2:
+                xmp_set_player(((XMPDecoder *)decoder).xmpContext, XMP_PLAYER_INTERP, XMP_INTERP_SPLINE);
+                break;
 
-			default:
-				break;
-		}
-	}
+            default:
+                break;
+        }
+    }
 }
 
 - (void)decoderLoadingWasSuccessful:(id)sender
 {
-	NSString* songTitle = [[sender songTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	if ([songTitle length] == 0)
-	{
-		[statusBox setStringValue:[currentPlaylistItem.url lastPathComponent]];
-	}
-	else
-	{
-		[statusBox setStringValue: songTitle];
-	}
-	//[formatIndicator setStringValue:[NSString stringWithFormat:@"%@ (%d Ch.)", [sender fileFormat], [sender channels]]];
-	[formatIndicator setStringValue:[sender fileFormat]];
-	
-	if ([sender supportsSeeking])
-	{
-		[patternCounter setStringValue:[NSString stringWithFormat:@"%02X", 0]];
-		[positionCounter setStringValue:[NSString stringWithFormat:@"%d/%d", 0, [sender songLength] - 1]];
-		
-		[seekSlider setEnabled:YES];
-		[seekSlider setIntValue:0];
-		[seekSlider setMaxValue:[sender songLength]];
-		[seekSlider setNumberOfTickMarks:[sender songLength] + 1];
-		
-		[patternScope setCurrentPosition:0];
-		[patternScope setCurrentRow:0];
-	}
-	
-	if ([sender conformsToProtocol:@protocol(PatternData)])
-	{
-		[patternScope setDecoder:sender];
-		[patternScope setNeedsDisplay:YES];
-	}
+    NSString* songTitle = [[sender songTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if ([songTitle length] == 0)
+    {
+        [statusBox setStringValue:[currentPlaylistItem.url lastPathComponent]];
+    }
+    else
+    {
+        [statusBox setStringValue: songTitle];
+    }
+    //[formatIndicator setStringValue:[NSString stringWithFormat:@"%@ (%d Ch.)", [sender fileFormat], [sender channels]]];
+    [formatIndicator setStringValue:[sender fileFormat]];
 
-	if (playerState == PLAYING)
-	{
-		decoder = sender;
-		[decoder play];
+    if ([sender supportsSeeking])
+    {
+        [patternCounter setStringValue:[NSString stringWithFormat:@"%02X", 0]];
+        [positionCounter setStringValue:[NSString stringWithFormat:@"%d/%d", 0, [sender songLength] - 1]];
+
+        [seekSlider setEnabled:YES];
+        [seekSlider setIntValue:0];
+        [seekSlider setMaxValue:[sender songLength]];
+        [seekSlider setNumberOfTickMarks:[sender songLength] + 1];
+
+        [patternScope setCurrentPosition:0];
+        [patternScope setCurrentRow:0];
+    }
+
+    if ([sender conformsToProtocol:@protocol(PatternData)])
+    {
+        [patternScope setDecoder:sender];
+        [patternScope setNeedsDisplay:YES];
+    }
+
+    if (playerState == PLAYING)
+    {
+        decoder = sender;
+        [decoder play];
         currentPlaylistItem.isPlaying = YES;
-	}
+    }
 }
 
 - (void)decoderLoadingWasUnsuccessful:(id)sender
 {
-	NSAlert* errorMessage = [[NSAlert alloc] init];
-	[errorMessage setMessageText:@"Couldn't open file."];
-	[errorMessage setAlertStyle:NSCriticalAlertStyle];
-	[errorMessage beginSheetModalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+    NSAlert* errorMessage = [[NSAlert alloc] init];
+    [errorMessage setMessageText:@"Couldn't open file."];
+    [errorMessage setAlertStyle:NSCriticalAlertStyle];
+    [errorMessage beginSheetModalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
 }
 
 #pragma mark - DecoderDelegate
 
 - (void)patternRowNumberDidChange:(id)sender withRowNumber:(int)rowNumber andPatternLength:(int)patternLength
 {
-	[patternCounter setStringValue:[NSString stringWithFormat:@"%02X", rowNumber]];
-	[seekSlider setFloatValue:floor([seekSlider floatValue]) + (float)rowNumber / (float)patternLength];
-	[patternScope setCurrentRow:rowNumber];
+    [patternCounter setStringValue:[NSString stringWithFormat:@"%02X", rowNumber]];
+    [seekSlider setFloatValue:floor([seekSlider floatValue]) + (float)rowNumber / (float)patternLength];
+    [patternScope setCurrentRow:rowNumber];
 }
 
 - (void)positionNumberDidChange:(id)sender withPosNumber:(int)posNumber
 {
-	[positionCounter setStringValue:[NSString stringWithFormat:@"%d/%d", posNumber, [decoder songLength] - 1]];
-	//[positionCounter setIntValue:posNumber];
-	[seekSlider setIntValue:posNumber];
-	[patternScope setCurrentPosition:posNumber];
+    [positionCounter setStringValue:[NSString stringWithFormat:@"%d/%d", posNumber, [decoder songLength] - 1]];
+    //[positionCounter setIntValue:posNumber];
+    [seekSlider setIntValue:posNumber];
+    [patternScope setCurrentPosition:posNumber];
 }
 
 - (void)playbackDidFinish:(id)sender
@@ -391,33 +391,35 @@
 
 - (IBAction)seekSliderDidChangeValue:(NSSlider *)sender
 {
-	if (decoder.supportsSeeking)
-	{
-		int newPosition = round([sender floatValue]);
-		[decoder seekPosition: newPosition];
-		[patternScope setCurrentRow: newPosition];
-	}
+    if (decoder.supportsSeeking)
+    {
+        unsigned int newPosition = (unsigned int) round([sender floatValue]);
+        [decoder seekPosition: newPosition];
+        [patternScope setCurrentRow: 0];
+        [patternScope setCurrentPosition: newPosition];
+    }
 }
 
 #pragma mark - PatternScope Options
 
 - (IBAction)blankZeroCheckBoxWasClicked:(NSButton *)sender
 {
-	patternScope.blankZero = sender.state == NSOnState;
+    patternScope.blankZero = sender.state == NSOnState;
 }
 
 - (IBAction)prospectiveCheckBoxWasClicked:(NSButton *)sender
 {
-	patternScope.prospectiveMode = sender.state == NSOnState;
+    patternScope.prospectiveMode = sender.state == NSOnState;
 }
 
 - (IBAction)lowercaseNotesCheckBoxWasClicked:(NSButton *)sender
 {
-	patternScope.lowercaseNotes = sender.state == NSOnState;
+    patternScope.lowercaseNotes = sender.state == NSOnState;
 }
 
 - (IBAction)lowercaseHexCheckBoxWasClicked:(NSButton *)sender
 {
-	patternScope.lowercaseHex = sender.state == NSOnState;
+    patternScope.lowercaseHex = sender.state == NSOnState;
 }
 @end
+

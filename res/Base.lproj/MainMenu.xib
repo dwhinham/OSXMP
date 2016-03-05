@@ -328,11 +328,11 @@
         <window title="PatternScope" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="41A-ge-VSb" userLabel="PatternScope" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-            <rect key="contentRect" x="335" y="390" width="426" height="286"/>
+            <rect key="contentRect" x="335" y="390" width="460" height="282"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="265" height="107"/>
             <view key="contentView" wantsLayer="YES" id="D4g-0Z-uvC">
-                <rect key="frame" x="0.0" y="0.0" width="426" height="286"/>
+                <rect key="frame" x="0.0" y="0.0" width="460" height="282"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="mxK-rc-Inq">
@@ -346,41 +346,9 @@
                             <action selector="blankZeroCheckBoxWasClicked:" target="494" id="lGw-Nb-ADr"/>
                         </connections>
                     </button>
-                    <customView wantsLayer="YES" id="XoU-RA-5cq" customClass="PatternScopeView">
-                        <rect key="frame" x="0.0" y="22" width="426" height="264"/>
+                    <customView wantsLayer="YES" id="XoU-RA-5cq" customClass="OpenGLPatternScopeView">
+                        <rect key="frame" x="0.0" y="22" width="460" height="260"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <popUpButton verticalHuggingPriority="750" id="qwA-bF-hhE">
-                                <rect key="frame" x="302" y="240" width="117" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="mini" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="o3d-en-Qrz">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="miniSystem"/>
-                                    <menu key="menu" title="OtherViews" id="hdk-bz-B7K">
-                                        <items>
-                                            <menuItem title="AndaleMono" id="oHF-Gm-AcM"/>
-                                            <menuItem title="Consolas" id="kO1-Hr-Qkv"/>
-                                            <menuItem title="CourierNewPSMT" id="1AC-gU-fGw"/>
-                                            <menuItem title="Menlo-Regular" id="kSk-LE-tSd"/>
-                                            <menuItem title="Monaco" id="3HH-ch-aM9"/>
-                                            <menuItem title="SourceCodePro-Medium" id="Stv-kE-3HN"/>
-                                            <menuItem title="TopazPlusa600a1200a4000" id="o7W-0p-FoY"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="patternScopeSetFontName:" target="494" id="5dA-60-J7v"/>
-                                </connections>
-                            </popUpButton>
-                            <slider verticalHuggingPriority="750" id="uqH-jC-8Bu">
-                                <rect key="frame" x="303" y="215" width="114" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" minValue="5" maxValue="30" doubleValue="12" tickMarkPosition="above" sliderType="linear" id="qIA-JP-61T"/>
-                                <connections>
-                                    <action selector="patternScopeSetFontSize:" target="494" id="LrU-q4-jdt"/>
-                                </connections>
-                            </slider>
-                        </subviews>
                     </customView>
                     <button id="PzM-G9-Adc">
                         <rect key="frame" x="85" y="1" width="83" height="20"/>
@@ -418,6 +386,7 @@
                 </subviews>
             </view>
             <contentBorderThickness minY="22"/>
+            <point key="canvasLocation" x="444" y="223"/>
         </window>
         <customObject id="eyi-K2-uXm" customClass="PlaylistViewController"/>
     </objects>

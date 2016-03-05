@@ -11,13 +11,14 @@
 
 @interface DigiBoosterDecoder : NSObject <Decoder, PatternData>
 {
-	BOOL _play;
-	struct DB3Module* _db3Module;
-	void* _db3Engine;
-	
-	unsigned int _currentPosition;
+    BOOL _play;
+    struct DB3Module* _db3Module;
+    void* _db3Engine;
+
+    unsigned int _currentPosition;
 }
 
 - (BOOL) validatePosition:(unsigned int)position;
 
 @end
+

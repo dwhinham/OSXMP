@@ -28,17 +28,17 @@
 	CTFontRef _fontRef;
 }
 
-@property (nonatomic, weak, readwrite) id<Decoder> decoder;
-@property (nonatomic, assign, readwrite) int channels;
-@property (nonatomic, assign, readwrite) int currentRow;
-@property (nonatomic, assign, readwrite) int currentPosition;
+@property (nonatomic, weak,   readwrite) id<Decoder> decoder;
+@property (nonatomic, assign, readwrite) unsigned int channels;
+@property (nonatomic, assign, readwrite) unsigned int currentRow;
+@property (nonatomic, assign, readwrite) unsigned int currentPosition;
 
 @property (nonatomic, assign, readwrite) BOOL blankZero;
 @property (nonatomic, assign, readwrite) BOOL prospectiveMode;
 @property (nonatomic, assign, readwrite) BOOL lowercaseNotes;
 @property (nonatomic, assign, readwrite) BOOL lowercaseHex;
 
-@property (nonatomic, copy, readwrite) NSString* fontName;
+@property (nonatomic, copy,   readwrite) NSString* fontName;
 @property (nonatomic, assign, readwrite) float fontSize;
 
 @property (nonatomic, assign, readwrite) CGColorRef defaultRowColor;
