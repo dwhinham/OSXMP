@@ -3,4 +3,4 @@ xcode_project:  OSXMP.xcodeproj
 xcode_scheme:   OSXMP
 before_install:
   - brew update
-  - brew install libxmp yaml-cpp
+  - brew install freetype glm libxmp yaml-cpp
