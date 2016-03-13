@@ -8,7 +8,7 @@
 
 #import "DigiBoosterDecoder.h"
 
-@implementation DigiBoosterDecoder : NSObject
+@implementation DigiBoosterDecoder
 {
     BOOL _hasAdvancedPastFirstOrder;
 }
@@ -33,15 +33,18 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
     {
         dispatch_async(dispatch_get_main_queue(), ^(void)
                        {
+                           unsigned int patternLength = decoder->_db3Module->Patterns[uevent->ue_Pattern]->NumRows;
+                           unsigned int row           = (unsigned int) uevent->ue_Row;
+                           unsigned int order         = (unsigned int) uevent->ue_Order;
+
                            // Inform delegate of current row
-                           int patternLength = decoder->_db3Module->Patterns[uevent->ue_Pattern]->NumRows;
-                           [decoder->_delegate patternRowNumberDidChange:decoder withRowNumber:uevent->ue_Row andPatternLength:patternLength];
+                           [decoder->_delegate patternRowNumberDidChange:decoder withRowNumber:row andPatternLength:patternLength];
 
                            // If the position has changed, let the delegate know
-                           if (decoder->_currentPosition != (unsigned int) uevent->ue_Order)
+                           if (decoder->_currentPosition != order)
                            {
-                               decoder->_currentPosition = (unsigned int) uevent->ue_Order;
-                               [decoder->_delegate positionNumberDidChange:decoder withPosNumber:uevent->ue_Order];
+                               decoder->_currentPosition = order;
+                               [decoder->_delegate positionNumberDidChange:decoder withPosNumber:order];
                            }
                        });
     }
@@ -144,18 +147,26 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
                    {
                        while (self->_play)
                        {
-                           int16_t buffer[32];
-                           if (!DB3_Mix(self->_db3Engine, 16, buffer))
+                           int16_t buffer[64];
+                           uint32_t validFrames = DB3_Mix(self->_db3Engine, 16, buffer);
+
+                           if (!validFrames)
                                break;
 
-                           while (!TPCircularBufferProduceBytes(self->_audioDriver.outputBuffer, buffer, sizeof(buffer)))
+                           while (!TPCircularBufferProduceBytes(self->_audioDriver.outputBuffer, buffer, (int32_t) validFrames << 2))
                            {
                                // Wait for semaphore
                                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
                                if (!self->_play)
-                                   break;
+                               {
+                                   NSLog(@"returning from dispatch thread");
+                                   return;
+                               }
                            }
                        }
+
+                       NSLog(@"playback ended in dispatch thread");
 
                        // Song finished
                        dispatch_async(dispatch_get_main_queue(), ^(void)
@@ -175,6 +186,7 @@ static void db3Callback(void* udata, struct UpdateEvent* uevent)
     [_audioDriver stop];
     [_audioDriver flush];
     _play = NO;
+
     return YES;
 }
 

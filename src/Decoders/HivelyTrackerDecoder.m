@@ -190,7 +190,7 @@
     return YES;
 }
 
-- (BOOL)seekPosition: (unsigned long long)position
+- (BOOL)seekPosition: (unsigned int)position
 {
     // Validate the position
     if (![self validatePosition:position])
@@ -206,7 +206,7 @@
     return YES;
 }
 
-- (BOOL)seekTimeMillis: (unsigned long long)timeMillis
+- (BOOL)seekTimeMillis: (unsigned int)timeMillis
 {
     return NO;
 }
@@ -288,9 +288,9 @@
     return NO;
 }
 
-- (BOOL)validatePosition: (int)position
+- (BOOL)validatePosition: (unsigned int)position
 {
-    if (position < 0 || position >= _hvlModule->ht_PositionNr)
+    if (position >= _hvlModule->ht_PositionNr)
     {
         return NO;
     }

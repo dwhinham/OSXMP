@@ -13,8 +13,6 @@
 
 #define PATTERNSCOPE_DEFAULT_LINE_SPACING	3
 #define PATTERNSCOPE_DEFAULT_FONT_NAME		@"AndaleMono"
-//#define PATTERNSCOPE_DEFAULT_FONT_NAME		"SourceCodePro-Medium"
-//#define PATTERNSCOPE_DEFAULT_FONT_NAME		"Consolas"
 #define PATTERNSCOPE_DEFAULT_FONT_SIZE		48
 
 #define GLSL(src) "#version 330 core\n" #src
@@ -29,6 +27,7 @@ CheckOpenGLError(#stmt, __FILE__, __LINE__); \
 #endif
 
 // Error handler for debugging
+#ifdef DEBUG
 static void CheckOpenGLError(const char* stmt, const char* fname, int line)
 {
     GLenum err = glGetError();
@@ -38,6 +37,7 @@ static void CheckOpenGLError(const char* stmt, const char* fname, int line)
         //abort();
     }
 }
+#endif
 
 // FreeType glyph metrics
 typedef struct CharData

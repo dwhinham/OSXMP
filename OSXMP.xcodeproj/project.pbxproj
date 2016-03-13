@@ -24,8 +24,8 @@
 		2DA213A41C78E178002866CD /* PlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA213A31C78E178002866CD /* PlaylistItem.m */; };
 		2DA213A81C78E809002866CD /* Playlist.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DA213A71C78E809002866CD /* Playlist.mm */; };
 		2DA213A91C7A41E9002866CD /* OpenGLPatternScopeView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D34BF421C6F7FAB009960E0 /* OpenGLPatternScopeView.mm */; };
-		2DA213AB1C7A489E002866CD /* libfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA213AA1C7A489E002866CD /* libfreetype.dylib */; };
-		2DA213AC1C7A48B3002866CD /* libfreetype.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DA213AA1C7A489E002866CD /* libfreetype.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2DA213AB1C7A489E002866CD /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA213AA1C7A489E002866CD /* libfreetype.6.dylib */; };
+		2DA213AC1C7A48B3002866CD /* libfreetype.6.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DA213AA1C7A489E002866CD /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2DA213AE1C7A4C71002866CD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA213AD1C7A4C71002866CD /* OpenGL.framework */; };
 		2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; };
 		2DFCD5231C6FF38F00EC7D30 /* libhivelytracker.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D34C6E51C6F8392009960E0 /* libhivelytracker.dylib */; };
@@ -50,8 +50,8 @@
 		2DFCD59A1C700F7900EC7D30 /* libdigibooster3.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DFCD53C1C7004F500EC7D30 /* libdigibooster3.dylib */; };
 		2DFCD59B1C700F8A00EC7D30 /* libxmp.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DFCD5941C700EC200EC7D30 /* libxmp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2DFCD59E1C70112800EC7D30 /* libxmp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD5941C700EC200EC7D30 /* libxmp.dylib */; };
-		2DFCD5A61C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */; };
-		2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2DFCD5A61C7012DC00EC7D30 /* libyaml-cpp.0.5.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.3.dylib */; };
+		2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.3.dylib in Copy Shared Libraries To Frameworks Folder */ = {isa = PBXBuildFile; fileRef = 2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +81,8 @@
 				2DFCD59A1C700F7900EC7D30 /* libdigibooster3.dylib in Copy Shared Libraries To Frameworks Folder */,
 				2DFCD5221C6FF35200EC7D30 /* libhivelytracker.dylib in Copy Shared Libraries To Frameworks Folder */,
 				2DFCD59B1C700F8A00EC7D30 /* libxmp.dylib in Copy Shared Libraries To Frameworks Folder */,
-				2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.dylib in Copy Shared Libraries To Frameworks Folder */,
-				2DA213AC1C7A48B3002866CD /* libfreetype.dylib in Copy Shared Libraries To Frameworks Folder */,
+				2DFCD5A71C70135E00EC7D30 /* libyaml-cpp.0.5.3.dylib in Copy Shared Libraries To Frameworks Folder */,
+				2DA213AC1C7A48B3002866CD /* libfreetype.6.dylib in Copy Shared Libraries To Frameworks Folder */,
 			);
 			name = "Copy Shared Libraries To Frameworks Folder";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,7 +130,7 @@
 		2DA213A51C78E197002866CD /* PlaylistItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistItem.h; sourceTree = "<group>"; };
 		2DA213A61C78E809002866CD /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		2DA213A71C78E809002866CD /* Playlist.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Playlist.mm; sourceTree = "<group>"; };
-		2DA213AA1C7A489E002866CD /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.dylib; path = ../../../../usr/local/Cellar/freetype/2.6.3/lib/libfreetype.dylib; sourceTree = "<group>"; };
+		2DA213AA1C7A489E002866CD /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = /usr/local/Cellar/freetype/2.6.3/lib/libfreetype.6.dylib; sourceTree = "<absolute>"; };
 		2DA213AD1C7A4C71002866CD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		2DFCD5301C6FFE6A00EC7D30 /* hvl_replay.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hvl_replay.c; path = lib/hivelytracker/hvl_replay.c; sourceTree = "<group>"; };
 		2DFCD5311C6FFE6A00EC7D30 /* hvl_replay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hvl_replay.h; path = lib/hivelytracker/hvl_replay.h; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		2DFCD54B1C70064100EC7D30 /* loader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = loader.c; path = lib/libdigibooster3/loader.c; sourceTree = "<group>"; };
 		2DFCD54C1C70064100EC7D30 /* player.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = player.c; path = lib/libdigibooster3/player.c; sourceTree = "<group>"; };
 		2DFCD5941C700EC200EC7D30 /* libxmp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxmp.dylib; path = /usr/local/Cellar/libxmp/4.3.10/lib/libxmp.dylib; sourceTree = "<absolute>"; };
-		2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libyaml-cpp.0.5.dylib"; path = "/Users/dale/GitHub/osxmp/../../../../usr/local/Cellar/yaml-cpp/0.5.3/lib/libyaml-cpp.0.5.dylib"; sourceTree = "<absolute>"; };
+		2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libyaml-cpp.0.5.3.dylib"; path = "/usr/local/Cellar/yaml-cpp/0.5.3/lib/libyaml-cpp.0.5.3.dylib"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,9 +162,9 @@
 				2DA213AE1C7A4C71002866CD /* OpenGL.framework in Frameworks */,
 				2DFCD56F1C70097200EC7D30 /* libdigibooster3.dylib in Frameworks */,
 				2DFCD5231C6FF38F00EC7D30 /* libhivelytracker.dylib in Frameworks */,
-				2DFCD5A61C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib in Frameworks */,
+				2DFCD5A61C7012DC00EC7D30 /* libyaml-cpp.0.5.3.dylib in Frameworks */,
 				2DFCD59E1C70112800EC7D30 /* libxmp.dylib in Frameworks */,
-				2DA213AB1C7A489E002866CD /* libfreetype.dylib in Frameworks */,
+				2DA213AB1C7A489E002866CD /* libfreetype.6.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,9 +329,9 @@
 		2DFCD5931C700DED00EC7D30 /* Homebrew Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				2DA213AA1C7A489E002866CD /* libfreetype.dylib */,
+				2DA213AA1C7A489E002866CD /* libfreetype.6.dylib */,
 				2DFCD5941C700EC200EC7D30 /* libxmp.dylib */,
-				2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.dylib */,
+				2DFCD5A51C7012DC00EC7D30 /* libyaml-cpp.0.5.3.dylib */,
 			);
 			name = "Homebrew Libraries";
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Fix the install names for the libraries we copied to the app bundle\ncd ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\nfor lib in *.dylib; do\n    oldid=$(otool -XD ${lib})\n    newid=@rpath/../Frameworks/${lib}\n    install_name_tool -id ${newid} ${lib}\n    install_name_tool -change ${oldid} ${newid} ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\ndone";
+			shellScript = "# Fix the install names for the libraries we copied to the app bundle\npushd ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\nfor lib in *.dylib; do\n    oldid=$(otool -XD ${lib})\n    newid=@rpath/../Frameworks/${lib}\n    install_name_tool -id ${newid} ${lib}\n    install_name_tool -change ${oldid} ${newid} ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\ndone\npopd";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -567,7 +567,6 @@
 		2D34B69B1C6F7F02009960E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -629,13 +628,6 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/libxmp/4.3.10/include,
-					"/usr/local/Cellar/yaml-cpp/0.5.3/include",
-					/usr/local/Cellar/boost/1.60.0_1/include,
-					/usr/local/Cellar/freetype/2.6.3/include/freetype2,
-					/usr/local/Cellar/glm/0.9.7.1/include,
-				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/libxmp/4.3.10/lib,
 					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
@@ -645,13 +637,19 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-isystem/usr/local/Cellar/boost/1.60.0_1/include",
+					"-isystem/usr/local/Cellar/freetype/2.6.3/include/freetype2",
+					"-isystem/usr/local/Cellar/glm/0.9.7.1/include",
+					"-isystem/usr/local/Cellar/libxmp/4.3.10/include",
+					"-isystem/usr/local/Cellar/yaml-cpp/0.5.3/include",
+				);
 			};
 			name = Debug;
 		};
 		2D34B69C1C6F7F02009960E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -707,13 +705,6 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/libxmp/4.3.10/include,
-					"/usr/local/Cellar/yaml-cpp/0.5.3/include",
-					/usr/local/Cellar/boost/1.60.0_1/include,
-					/usr/local/Cellar/freetype/2.6.3/include/freetype2,
-					/usr/local/Cellar/glm/0.9.7.1/include,
-				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/libxmp/4.3.10/lib,
 					"/usr/local/Cellar/yaml-cpp/0.5.3/lib",
@@ -722,6 +713,13 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					"-isystem/usr/local/Cellar/boost/1.60.0_1/include",
+					"-isystem/usr/local/Cellar/freetype/2.6.3/include/freetype2",
+					"-isystem/usr/local/Cellar/glm/0.9.7.1/include",
+					"-isystem/usr/local/Cellar/libxmp/4.3.10/include",
+					"-isystem/usr/local/Cellar/yaml-cpp/0.5.3/include",
+				);
 			};
 			name = Release;
 		};

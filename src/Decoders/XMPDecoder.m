@@ -54,17 +54,19 @@
     NSLog(@"libxmp version: %s", xmp_version);
 #endif
 
-    // Copy NSString to a C string
-    char path[[theFilePath length]];
-    strcpy(path, [theFilePath UTF8String]);
-
     // Create a new XMP context
     _xmpCtx = xmp_create_context();
 
-    if (xmp_load_module(_xmpCtx, path))
+    // Load the module
+    if (xmp_load_module(_xmpCtx, (char*) [theFilePath UTF8String]))
     {
         // Loading failed
-        if (_delegate) [_delegate decoderLoadingWasUnsuccessful:self];
+        if (_delegate)
+            [_delegate decoderLoadingWasUnsuccessful:self];
+
+        // Free the context
+        xmp_free_context(_xmpCtx);
+
         return NO;
     }
 
@@ -76,9 +78,8 @@
 
     // Success
     if (_delegate)
-    {
         [_delegate decoderLoadingWasSuccessful:self];
-    }
+
     return YES;
 }
 
@@ -132,6 +133,7 @@
                            {
                                // Wait for semaphore (aka. down)
                                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
                                if (!self->_play)
                                    return;
                            }
@@ -142,18 +144,18 @@
                                               if (currentPosition != self->_xmpFrameInfo.pos)
                                               {
                                                   currentPosition = self->_xmpFrameInfo.pos;
+
                                                   if (self->_delegate)
-                                                  {
-                                                      [self->_delegate positionNumberDidChange:self withPosNumber:currentPosition];
-                                                  }
+                                                      [self->_delegate positionNumberDidChange:self withPosNumber: (unsigned) currentPosition];
                                               }
                                               if (currentRow != self->_xmpFrameInfo.row)
                                               {
                                                   currentRow = self->_xmpFrameInfo.row;
+
                                                   if (self->_delegate)
-                                                  {
-                                                      [self->_delegate patternRowNumberDidChange:self withRowNumber:currentRow andPatternLength:self->_xmpFrameInfo.num_rows];
-                                                  }
+                                                      [self->_delegate patternRowNumberDidChange:self
+                                                                                   withRowNumber: (unsigned) currentRow
+                                                                                andPatternLength: (unsigned) self->_xmpFrameInfo.num_rows];
                                               }
                                           });
                        }
@@ -163,6 +165,7 @@
                                       {
                                           if (self->_delegate)
                                               [self->_delegate playbackDidFinish:self];
+
                                           [self stop];
                                       });
                    });
@@ -207,7 +210,7 @@
     return (BOOL) xmp_set_position(_xmpCtx, (signed) position);
 }
 
-- (BOOL)seekTimeMillis: (unsigned long long)timeMillis
+- (BOOL)seekTimeMillis: (unsigned int)timeMillis
 {
     return (BOOL) xmp_seek_time(_xmpCtx, (int) timeMillis);
 }

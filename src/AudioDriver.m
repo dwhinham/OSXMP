@@ -162,7 +162,7 @@ float averageLevel (SInt16* audioData, int numBytes)
 	if (error == noErr) return false;
 	char errorString[20];
 	// See if it appears to be a 4-char-code
-	*(UInt32 *)(errorString + 1) = CFSwapInt32HostToBig(error);
+	*(UInt32 *)(errorString + 1) = CFSwapInt32HostToBig((uint32_t) error);
 	if (isprint(errorString[1]) && isprint(errorString[2]) && isprint(errorString[3]) && isprint(errorString[4]))
 	{
 		errorString[0] = errorString[5] = '\'';

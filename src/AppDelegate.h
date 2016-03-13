@@ -47,12 +47,8 @@ typedef NS_ENUM(NSUInteger, PlayerState)
 
 - (IBAction)openFileWithDialog:(id)sender;
 - (IBAction)changeVolume:(id)sender;
-- (void)openPlaylistItem:(PlaylistItem*)playlistItem;
 
-- (void)decoderLoadingWasSuccessful:(id)sender;
-- (void)decoderLoadingWasUnsuccessful:(id)sender;
-- (void)patternRowNumberDidChange:(id)sender withRowNumber:(int)rowNumber andPatternLength:(int)patternLength;
-- (void)positionNumberDidChange:(id)sender withPosNumber:(int)posNumber;
+- (void)openPlaylistItem:(PlaylistItem*)playlistItem;
 
 - (IBAction)seekSliderDidChangeValue:(NSSlider *)sender;
 @end

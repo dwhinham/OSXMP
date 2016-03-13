@@ -30,12 +30,12 @@
 }
 
 - (NSUInteger)countByEnumeratingWithState: (NSFastEnumerationState *) enumerationState
-                                   objects: (id __unsafe_unretained []) buffer
-                                     count: (NSUInteger) len
+                                  objects: (id __unsafe_unretained []) buffer
+                                    count: (NSUInteger) len
 {
     return [_playlistItems countByEnumeratingWithState: enumerationState
-                                         objects: buffer
-                                           count: len];
+                                               objects: buffer
+                                                 count: len];
 }
 
 - (PlaylistItem*)currentPlaylistItem
@@ -83,7 +83,7 @@
 
     try
     {
-        YAML::Node document = YAML::Load([yamlString cStringUsingEncoding:NSUTF8StringEncoding]);
+        YAML::Node document = YAML::Load([yamlString UTF8String]);
         YAML::Node playlist = document["playlist"];
         if (playlist && playlist.IsMap())
         {
@@ -143,7 +143,7 @@
     if (_name)
     {
         out << YAML::Key << "name";
-        out << YAML::Value << [_name cStringUsingEncoding:NSUTF8StringEncoding];
+        out << YAML::Value << [_name UTF8String];
     }
 
     out << YAML::Key << "items";
@@ -154,11 +154,11 @@
     {
         out << YAML::BeginMap;
         out << YAML::Key << "path";
-        out << YAML::Value << [[item.url path] cStringUsingEncoding:NSUTF8StringEncoding];
+        out << YAML::Value << [[item.url path] UTF8String];
         if (item.name)
         {
             out << YAML::Key << "name";
-            out << YAML::Value << [item.name cStringUsingEncoding:NSUTF8StringEncoding];
+            out << YAML::Value << [item.name UTF8String];
         }
         out << YAML::Key << "repeat";
         out << YAML::Value << item.repeatCount;

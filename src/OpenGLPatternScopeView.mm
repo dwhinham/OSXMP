@@ -12,6 +12,7 @@
 #import <glm/glm.hpp>
 #import <glm/gtc/matrix_transform.hpp>
 #import <glm/gtc/type_ptr.hpp>
+#import <unordered_map>
 #import <vector>
 #import "OpenGLPatternScopeView.h"
 
@@ -28,7 +29,10 @@
     unsigned int _atlasWidth;
     unsigned int _atlasHeight;
 
-    CharData     _charData[128];
+    std::unordered_map<char, CharData> _charData;
+    std::vector<glm::vec4> _vertices;
+
+    int          _textIndex;
 
     glm::mat4    _orthoMatrix;
 
@@ -81,7 +85,7 @@
     return nybble + 'A' - 10;
 }
 
-- (NSArray<NSString*>*)getAllMonospaceFonts
+- (NSArray*)getAllMonospaceFonts
 {
     return [[NSFontManager sharedFontManager] availableFontNamesWithTraits:NSFixedPitchFontMask];
 }
@@ -99,7 +103,7 @@
     GLuint texture;
     _atlasWidth = 0;
     _atlasHeight = 0;
-    const char* fontPath = [[[self urlForFontName:fontName] path] cStringUsingEncoding:NSUTF8StringEncoding];
+    const char* fontPath = [[[self urlForFontName:fontName] path] UTF8String];
 
     if (FT_Init_FreeType(&ft))
     {
@@ -147,7 +151,7 @@
     // Render glyphs into the atlas
     glPixelStorei(GL_UNPACK_ALIGNMENT,1);
     int xOffset = 0;
-    for (int i = 32; i < 128; i++)
+    for (auto i = 32; i < 128; i++)
     {
         if (FT_Load_Char(face, (FT_ULong)i, FT_LOAD_RENDER))
         {
@@ -158,13 +162,26 @@
         GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, 0, (GLsizei) face->glyph->bitmap.width, (GLsizei) face->glyph->bitmap.rows, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer));
 
         // Store font metrics
-        _charData[i].advanceX     = g->advance.x >> 6;
-        _charData[i].advanceY     = g->advance.y >> 6;
-        _charData[i].bitmapWidth  = g->bitmap.width;
-        _charData[i].bitmapHeight = g->bitmap.rows;
-        _charData[i].bitmapLeft   = g->bitmap_left;
-        _charData[i].bitmapTop    = g->bitmap_top;
-        _charData[i].atlasOffsetX = (GLfloat) xOffset / _atlasWidth;
+//        _charData[i].advanceX     = g->advance.x >> 6;
+//        _charData[i].advanceY     = g->advance.y >> 6;
+//        _charData[i].bitmapWidth  = g->bitmap.width;
+//        _charData[i].bitmapHeight = g->bitmap.rows;
+//        _charData[i].bitmapLeft   = g->bitmap_left;
+//        _charData[i].bitmapTop    = g->bitmap_top;
+//        _charData[i].atlasOffsetX = (GLfloat) xOffset / _atlasWidth;
+
+        CharData c =
+        {
+            static_cast<GLfloat>(g->advance.x >> 6),
+            static_cast<GLfloat>(g->advance.y >> 6),
+            static_cast<GLfloat>(g->bitmap.width),
+            static_cast<GLfloat>(g->bitmap.rows),
+            static_cast<GLfloat>(g->bitmap_left),
+            static_cast<GLfloat>(g->bitmap_top),
+            (GLfloat) xOffset / _atlasWidth
+        };
+
+        _charData[i] = c;
 
         xOffset += g->bitmap.width;
     }
@@ -214,11 +231,19 @@
     GL_CHECK(glDrawArrays(GL_TRIANGLE_STRIP, 0, 4));
 }
 
-- (void)drawText:(const char*)string withColor:(glm::vec4*)color atX:(GLfloat)x andY:(GLfloat)y
+- (void)beginDrawText
 {
-    std::vector<glm::vec4> coords;
-    coords.reserve(6 * strlen(string));
+    // TODO: vector sizing.
+    _textIndex = -1;
+}
 
+- (void)endDrawText
+{
+    //_vertices.resize(_vertices.size());
+}
+
+- (void)drawText:(const char*)string withColor:(glm::vec4*)color atX:(GLfloat)x andY:(GLfloat)y toVector:(std::vector<glm::vec4>*)vector
+{
     for (auto c = string; *c; c++)
     {
         auto cd = &_charData[*c];
@@ -236,27 +261,25 @@
         if(w == 0.0f || h == 0.0f)
             continue;
 
-        glm::vec4 v1(x2,     y2,     ao,                   0);
-        glm::vec4 v2(x2,     y2 - h, ao,                   h / _atlasHeight);
-        glm::vec4 v3(x2 + w, y2,     ao + w / _atlasWidth, 0);
-        glm::vec4 v4(x2 + w, y2 - h, ao + w / _atlasWidth, h / _atlasHeight);
+//        if (_textIndex >= vector->size() - 7)
+//        {
+//            vector->resize(vector->size() * 2 + 6);
+//        }
 
-        coords.push_back(v1);  //  (1)--(3)
-        coords.push_back(v2);  //   |   /|
-        coords.push_back(v3);  //   |  / |  Front-facing;
-        coords.push_back(v3);  //   | /  |  counter-clockwise winding order
-        coords.push_back(v2);  //   |/   |
-        coords.push_back(v4);  //  (2)--(4)
+//        (*vector)[++_textIndex] = glm::vec4( x2,     y2,     ao,                   0                );
+//        (*vector)[++_textIndex] = glm::vec4( x2,     y2 - h, ao,                   h / _atlasHeight );
+//        (*vector)[++_textIndex] = glm::vec4( x2 + w, y2,     ao + w / _atlasWidth, 0                );
+//        (*vector)[++_textIndex] = glm::vec4( x2 + w, y2,     ao + w / _atlasWidth, 0                );
+//        (*vector)[++_textIndex] = glm::vec4( x2,     y2 - h, ao,                   h / _atlasHeight );
+//        (*vector)[++_textIndex] = glm::vec4( x2 + w, y2 - h, ao + w / _atlasWidth, h / _atlasHeight );
+
+        vector->emplace_back(x2,     y2,     ao,                   0               );  //  (1)--(3)
+        vector->emplace_back(x2,     y2 - h, ao,                   h / _atlasHeight);  //   |   /|
+        vector->emplace_back(x2 + w, y2,     ao + w / _atlasWidth, 0               );  //   |  / |  Front-facing;
+        vector->emplace_back(x2 + w, y2,     ao + w / _atlasWidth, 0               );  //   | /  |  counter-clockwise winding order
+        vector->emplace_back(x2,     y2 - h, ao,                   h / _atlasHeight);  //   |/   |
+        vector->emplace_back(x2 + w, y2 - h, ao + w / _atlasWidth, h / _atlasHeight);  //  (2)--(4)
     }
-
-    auto bytes = (GLsizei) (sizeof (glm::vec4) * coords.size());
-    GL_CHECK(glUseProgram(_textShaderProgram));
-    GL_CHECK(glUniformMatrix4fv(_textMatrixUniform, 1, 0, glm::value_ptr(_orthoMatrix)));
-    GL_CHECK(glUniform4f(_textColorUniform, color->r, color->g, color->b, color->a));
-    GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, _textVBO));
-    GL_CHECK(glVertexAttribPointer(_textCoordsAttrib, 4, GL_FLOAT, GL_FALSE, 0, 0));
-    GL_CHECK(glBufferData(GL_ARRAY_BUFFER, bytes, &coords[0], GL_DYNAMIC_DRAW));
-    GL_CHECK(glDrawArrays(GL_TRIANGLES, 0, (GLsizei) coords.size()));
 }
 
 - (void)awakeFromNib
@@ -478,8 +501,12 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    _vertices.clear();
+
+    [self beginDrawText];
+
     // TODO: Move this to a bounds changed callback
-    auto bounds = [self convertRectToBacking:[self frame]];
+    auto bounds = [self convertRectToBacking:[self bounds]];
     _width  = (unsigned int) bounds.size.width;
     _height = (unsigned int) bounds.size.height;
     _orthoMatrix = glm::ortho(0.0f, (float) _width, 0.0f, (float) _height);
@@ -492,8 +519,8 @@
     GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
 
     auto verticalCentre = _height / 2;
-    int textDrawXPos   = (signed) [self getStartingXPos];
-    int textDrawYPos   = (signed) (verticalCentre + (_rowGap + _rowSpacing) / 2);
+    int textDrawXPos;
+    int textDrawYPos = (signed) (verticalCentre + (_rowGap + _rowSpacing) / 2);
 
     // TODO: Do we need this? Maybe PatternScope shouldn't be passed non-conforming decoders
     if (_decoder && [_decoder conformsToProtocol:@protocol(PatternData)])
@@ -552,7 +579,7 @@
             for (auto track = 0; track < _channels && textDrawXPos + _columnWidth < _width + _columnWidth; track++)
             {
                 PatternEvent event = [ptnDataDecoder getPatternEventWithPosition:positionToDraw andTrack:track andRow:row];
-                [self drawPatternEvent:&event atXCoordinate:textDrawXPos andYCoordinate:textDrawYPos withColor:textColor];
+                [self drawPatternEvent:&event atX:textDrawXPos andY:textDrawYPos withColor:textColor toVector:&_vertices];
                 textDrawXPos += _columnWidth + _columnSpacing;
             }
 
@@ -601,7 +628,7 @@
             for (int track = 0; track < _channels && _columnWidth + textDrawXPos < _width + _columnWidth; track++)
             {
                 PatternEvent event = [ptnDataDecoder getPatternEventWithPosition:positionToDraw andTrack:track andRow:row];
-                [self drawPatternEvent:&event atXCoordinate:textDrawXPos andYCoordinate:textDrawYPos withColor:textColor];
+                [self drawPatternEvent:&event atX:textDrawXPos andY:textDrawYPos withColor:textColor toVector:&_vertices];
                 textDrawXPos += _columnWidth + _columnSpacing;
             }
 
@@ -610,11 +637,24 @@
 
     }
 
+    // Draw the vertices
+    [self endDrawText];
+
+    auto bytes = (GLsizei) (sizeof (glm::vec4) * _vertices.size());
+    GL_CHECK(glUseProgram(_textShaderProgram));
+    GL_CHECK(glUniformMatrix4fv(_textMatrixUniform, 1, 0, glm::value_ptr(_orthoMatrix)));
+    GL_CHECK(glUniform4f(_textColorUniform, _normalRowTextColor.r, _normalRowTextColor.g, _normalRowTextColor.b, _normalRowTextColor.a));
+    GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, _textVBO));
+    GL_CHECK(glVertexAttribPointer(_textCoordsAttrib, 4, GL_FLOAT, GL_FALSE, 0, 0));
+    GL_CHECK(glBufferData(GL_ARRAY_BUFFER, bytes, nullptr, GL_DYNAMIC_DRAW));
+    GL_CHECK(glBufferSubData(GL_ARRAY_BUFFER, 0, bytes, _vertices.data()));
+    GL_CHECK(glDrawArrays(GL_TRIANGLES, 0, (GLsizei) _vertices.size()));
+
     // Flip buffers
     [[self openGLContext] flushBuffer];
 }
 
-- (void)drawPatternEvent:(PatternEvent *)event atXCoordinate:(unsigned int)xCoord andYCoordinate:(unsigned int)yCoord withColor:(glm::vec4*)color
+- (void)drawPatternEvent:(PatternEvent *)event atX:(unsigned int)x andY:(unsigned int)y withColor:(glm::vec4*)color toVector:(std::vector<glm::vec4>*)vector
 {
     // Empty line (centre dots)
     //char tmpString[] = { '-', '-', '-', ' ', '-', '-', ' ', '-', '-', '-', '-', '\0' };
@@ -666,7 +706,7 @@
     _columnWidth = (unsigned int) _charData['0'].bitmapWidth * 12 + _columnSpacing;
 
     // Draw the string
-    [self drawText:tmpString withColor:color atX:xCoord andY:yCoord];
+    [self drawText:tmpString withColor:color atX:x andY:y toVector:vector];
 }
 
 - (unsigned int) getStartingXPos
@@ -677,4 +717,3 @@
 }
 
 @end
-

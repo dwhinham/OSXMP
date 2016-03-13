@@ -364,18 +364,18 @@
 
 #pragma mark - DecoderDelegate
 
-- (void)patternRowNumberDidChange:(id)sender withRowNumber:(int)rowNumber andPatternLength:(int)patternLength
+- (void)patternRowNumberDidChange:(id)sender withRowNumber:(unsigned int)rowNumber andPatternLength:(unsigned int)patternLength
 {
     [patternCounter setStringValue:[NSString stringWithFormat:@"%02X", rowNumber]];
-    [seekSlider setFloatValue:floor([seekSlider floatValue]) + (float)rowNumber / (float)patternLength];
+    [seekSlider setFloatValue:floorf([seekSlider floatValue]) + (float)rowNumber / (float)patternLength];
     [patternScope setCurrentRow:rowNumber];
 }
 
-- (void)positionNumberDidChange:(id)sender withPosNumber:(int)posNumber
+- (void)positionNumberDidChange:(id)sender withPosNumber:(unsigned int)posNumber
 {
     [positionCounter setStringValue:[NSString stringWithFormat:@"%d/%d", posNumber, [decoder songLength] - 1]];
     //[positionCounter setIntValue:posNumber];
-    [seekSlider setIntValue:posNumber];
+    [seekSlider setIntValue:(signed)posNumber];
     [patternScope setCurrentPosition:posNumber];
 }
 

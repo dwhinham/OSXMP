@@ -296,7 +296,7 @@
                 <outlet property="formatIndicator" destination="l7w-dG-hxy" id="Ek5-S1-W8Y"/>
                 <outlet property="mainWindow" destination="371" id="sz2-d3-Gke"/>
                 <outlet property="patternCounter" destination="HDe-CJ-LIV" id="1xC-MC-VHc"/>
-                <outlet property="patternScope" destination="XoU-RA-5cq" id="KvT-RE-tds"/>
+                <outlet property="patternScope" destination="SiT-mk-YGl" id="fZ0-8S-mPX"/>
                 <outlet property="patternScopeWindow" destination="41A-ge-VSb" id="2Ea-ot-vLA"/>
                 <outlet property="positionCounter" destination="SEh-hk-1jQ" id="OBD-bW-pQM"/>
                 <outlet property="seekSlider" destination="w4U-ZW-dL5" id="qCB-px-xc0"/>
@@ -325,7 +325,7 @@
             </view>
             <contentBorderThickness minY="0.0"/>
         </window>
-        <window title="PatternScope" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="41A-ge-VSb" userLabel="PatternScope" customClass="NSPanel">
+        <window title="PatternScope" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="41A-ge-VSb" userLabel="PatternScope" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="335" y="390" width="460" height="282"/>
@@ -346,10 +346,6 @@
                             <action selector="blankZeroCheckBoxWasClicked:" target="494" id="lGw-Nb-ADr"/>
                         </connections>
                     </button>
-                    <customView wantsLayer="YES" id="XoU-RA-5cq" customClass="OpenGLPatternScopeView">
-                        <rect key="frame" x="0.0" y="22" width="460" height="260"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </customView>
                     <button id="PzM-G9-Adc">
                         <rect key="frame" x="85" y="1" width="83" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -383,6 +379,10 @@
                             <action selector="lowercaseHexCheckBoxWasClicked:" target="494" id="jmT-GJ-Rnk"/>
                         </connections>
                     </button>
+                    <openGLView useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" wantsBestResolutionOpenGLSurface="YES" id="SiT-mk-YGl" customClass="OpenGLPatternScopeView">
+                        <rect key="frame" x="0.0" y="22" width="460" height="260"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </openGLView>
                 </subviews>
             </view>
             <contentBorderThickness minY="22"/>

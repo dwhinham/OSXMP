@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, DecoderType)
 - (BOOL)stop;
 
 - (BOOL)seekPosition: (unsigned int)position;
-- (BOOL)seekTimeMillis: (unsigned long long)timeMillis;
+- (BOOL)seekTimeMillis: (unsigned int)timeMillis;
 
 // Properties
 - (NSString*)fileFormat;
